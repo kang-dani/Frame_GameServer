@@ -1,0 +1,20 @@
+# ⚙️ Visual Studio
+.vs/
+*.suo
+*.user
+*.ipch
+*.VC.db
+
+# ⚒️ Build output
+*.obj
+*.exe
+*.pdb
+*.ilk
+*.log
+*.dll
+*.cache
+*.bin
+*.ncb
+*.idb
+*.sdf
+*.opensdf

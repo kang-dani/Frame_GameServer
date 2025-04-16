@@ -1,0 +1,45 @@
+syntax = "proto3";
+package Protocol;
+
+import "Struct.proto";
+
+option csharp_namespace = "Google.Protobuf.Protocol";
+
+enum PacketID {
+  C_LOGIN = 0;
+  S_LOGIN = 1;
+  C_ENTER_GAME = 2;
+  S_ENTER_GAME = 3;
+  S_JOIN_GAME = 4;
+  C_CHAT = 5;
+  S_CHAT = 6;
+}
+
+message C_Login {}
+
+message S_Login {
+	bool success = 1;
+	uint64 playerID = 2;
+}
+
+message C_EnterGame {
+	Player player = 1;
+}
+
+message S_EnterGame {
+	bool success = 1;
+	repeated Player players = 2;
+}
+
+message S_JoinGame {
+	Player player = 1;
+}
+
+message C_Chat {
+	string message = 1;
+}
+
+message S_Chat {
+	string message = 1;
+	uint32 senderID = 2;
+}
