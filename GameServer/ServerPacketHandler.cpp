@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "ServerPacketHandler.h"
-
+#include "PlayerIdGenerator.h"
+#include "Player.h"
 
 bool Handle_INVALID(shared_ptr<PacketSession>& session, BYTE* buffer, int len)
 {
@@ -21,24 +22,19 @@ void ServerPacketHandler::Init()
 
 bool ServerPacketHandler::Handle_LoginRequest(shared_ptr<PacketSession>& session, Protocol::LoginRequest& packet)
 {
-    printf("Login request from: %s\n", packet.user_id().c_str());
+    shared_ptr<Player> player = make_shared<Player>();
+    player->id = PlayerIdGenerator::Generator();
+    player->name = packet.userNickname();
+    player->session = static_pointer_cast<ClientSession>(session);
+
+    // 서버 플레이어 목록에 등록
+    PlayerLoginManager::GetInstance().AddPlayer(player->id, player);
 
     Protocol::LoginResponse response;
-
-    // 1. 임시 토큰 검증 (하드코딩된 토큰 사용)
-    const std::string validToken = "debug-token-12345";
-
-    if (packet.token() != validToken) {
-        // 2. 실패 처리
-        response.set_success(false);
-        response.set_error_message("Invalid token");
-        printf("Login failed for %s - Invalid token\n", packet.user_id().c_str());
-    }
-    else {
-        // 3. 성공 처리
-        response.set_success(true);
-        printf("Login successful for %s\n", packet.user_id().c_str());
-    }
+    response.set_success(true);
+    response.set_error_message("NULL");
+    //response.set_
+    //response.set_
 
     // 5. 응답 전송
     auto sendBuffer = MakeSendBuffer(response);
