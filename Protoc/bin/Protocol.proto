@@ -3,43 +3,82 @@ package Protocol;
 
 import "Struct.proto";
 
-option csharp_namespace = "Google.Protobuf.Protocol";
+// --- 인증 및 게임 입장 ---
 
-enum PacketID {
-  C_LOGIN = 0;
-  S_LOGIN = 1;
-  C_ENTER_GAME = 2;
-  S_ENTER_GAME = 3;
-  S_JOIN_GAME = 4;
-  C_CHAT = 5;
-  S_CHAT = 6;
+// 로그인 요청 (웹 인증 기반)
+message LoginRequest {
+    string user_id = 1;       // 유저 이름
+    string token = 2;          // 웹에서 발급된 인증 토큰
 }
 
-message C_Login {}
-
-message S_Login {
-	bool success = 1;
-	uint64 playerID = 2;
+// 로그인 응답
+message LoginResponse {
+    bool success = 1;          // 성공 여부
+    string error_message = 2;  // 실패 시 에러 메시지
 }
 
-message C_EnterGame {
-	Player player = 1;
+// 게임 입장 요청 
+message EnterGameRequest {
+    uint64 actor_id = 1;       // Actor ID
 }
 
-message S_EnterGame {
-	bool success = 1;
-	repeated Player players = 2;
+// 게임 입장 응답
+message EnterGameResponse {
+    bool success = 1;          // 성공 여부
+    string error_message = 2;  // 실패 시 에러 메시지
 }
 
-message S_JoinGame {
-	Player player = 1;
+// --- 월드 상태 업데이트 ---
+
+// 주변 데이터 업데이트
+message WorldStateUpdate {
+    repeated ActorInfo actors = 1;          // 주변 Actor 정보
 }
 
-message C_Chat {
-	string message = 1;
+// --- 플레이어 이동 ---
+
+// 이동 요청
+message PlayerMoveRequest {
+    uint64 actor_id = 1;       // 이동하는 Actor의 ID
+    Vector3 new_position = 2;  // 이동하려는 위치
+    float rotation = 3;        // 방향 (각도)
 }
 
-message S_Chat {
-	string message = 1;
-	uint32 senderID = 2;
+// 이동 응답
+message PlayerMoveResponse {
+    uint64 actor_id = 1;       // 이동한 Actor의 ID
+    Vector3 new_position = 2;  // 이동 후 위치
+    float rotation = 3;        // 방향 (각도)
+}
+
+// --- 채팅 ---
+
+// 채팅 메시지 요청
+message ChatRequest {
+    uint64 sender_id = 1;      // 발신자 ID
+    string message = 2;        // 메시지 내용
+}
+
+// 채팅 메시지 응답
+message ChatResponse {
+    uint64 sender_id = 1;      // 발신자 ID
+    string message = 2;        // 메시지 내용
+}
+
+// --- 행동 및 상호작용 ---
+
+// 행동 요청
+message ActionRequest {
+    uint64 actor_id = 1;       // 행동을 수행하는 Actor의 ID
+    string action_id = 2;      // 행동의 ID (예: "ATTACK", "HARVEST")
+    repeated uint64 target_ids = 3; // 행동 대상 ID 리스트
+    string extra_data = 4;     // 추가 데이터
+}
+
+// 행동 응답
+message ActionResponse {
+    bool success = 1;          // 성공 여부
+    string result_message = 2; // 행동 결과 메시지
+    string action_id = 3;      // 수행된 행동 ID
+    repeated uint64 affected_targets = 4; // 영향을 받은 대상 리스트
 }

@@ -2,7 +2,7 @@
 #include "ClientSession.h"
 #include "SessionManager.h"
 
-#include "ClientPacketHandler.h"
+#include "ServerPacketHandler.h"
 
 void ClientSession::OnConnected()
 {
@@ -12,7 +12,7 @@ void ClientSession::OnConnected()
 int ClientSession::OnRecvPacket(BYTE* buffer, int len)
 {
     shared_ptr<PacketSession> session = GetPacketSession();
-    ClientPacketHandler::HandlePacket(session, buffer, len);
+    ServerPacketHandler::HandlePacket(session, buffer, len);
 
     return len;
 }

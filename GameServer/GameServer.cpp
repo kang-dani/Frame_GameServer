@@ -8,13 +8,13 @@
 
 #include "Protocol.pb.h" // include
 
-#include "ClientPacketHandler.h"
+#include "ServerPacketHandler.h"
 
 #define THREAD_COUNT 5
 
 int main()
 {
-    ClientPacketHandler::Init();
+    ServerPacketHandler::Init();
 
     printf("============== Server  ================\n");
 

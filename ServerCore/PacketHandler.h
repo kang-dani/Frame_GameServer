@@ -17,9 +17,8 @@ protected:
     template<typename PacketType, typename Handler>
     static void RegisterPacketHandler(uint16 packetId, Handler handler)
     {
-        packetHandlers[packetId] = [handler](shared_ptr<PacketSession>& session, BYTE* buffer, int len) {
-            return HandlePacket<PacketType>(handler, session, buffer, len);
-            };
+        packetHandlers[packetId] = [handler](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
+            { return HandlePacket<PacketType>(handler, session, buffer, len); };
     }
 protected:
     template<typename PacketType, typename ProcessFunc>

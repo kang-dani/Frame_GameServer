@@ -1,11 +1,20 @@
 syntax = "proto3";
 package Protocol;
 
-option csharp_namespace = "Google.Protobuf.Protocol";
+import "Enum.proto";
 
-message Player
-{
-	uint64 id = 1;
-	string name = 2;
-	uint32 hp = 3;
+message Vector3 {
+    float x = 1;
+    float y = 2;
+    float z = 3;
+}
+
+// 모든 구성원 (Actor)의 기본 정보
+message ActorInfo {
+    uint64 actor_id = 1;         // Actor의 고유 ID
+    string name = 2;             // Actor의 이름
+    ActorRole role = 3;          // 현재 역할 (PLAYER, AI, ENVIRONMENT 등)
+    Vector3 position = 4;        // Actor의 위치
+    ActorStatus status = 5;      // Actor의 상태 (IDLE, MOVING 등)
+    string additional_info = 6;  // 부가 정보 (예: 스킬, 행동 등)
 }

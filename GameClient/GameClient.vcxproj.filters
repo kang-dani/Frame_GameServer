@@ -8,11 +8,11 @@
     <Filter Include="PCH">
       <UniqueIdentifier>{d192815a-2830-4e0b-a2f8-57710c084b0d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Session">
-      <UniqueIdentifier>{89310ba8-2be0-4bd6-8af6-683156a41f0f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Protobuf">
       <UniqueIdentifier>{8d84b33d-5347-4a5c-a6d4-9769ff77a0b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packet">
+      <UniqueIdentifier>{89310ba8-2be0-4bd6-8af6-683156a41f0f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -23,15 +23,18 @@
       <Filter>PCH</Filter>
     </ClCompile>
     <ClCompile Include="ServerSession.cpp">
-      <Filter>Session</Filter>
+      <Filter>Packet</Filter>
     </ClCompile>
     <ClCompile Include="Protocol.pb.cc">
       <Filter>Protobuf</Filter>
     </ClCompile>
-    <ClCompile Include="ServerPacketHandler.cpp">
-      <Filter>Session</Filter>
+    <ClCompile Include="ClientPacketHandler.cpp">
+      <Filter>Packet</Filter>
     </ClCompile>
     <ClCompile Include="Struct.pb.cc">
+      <Filter>Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="Enum.pb.cc">
       <Filter>Protobuf</Filter>
     </ClCompile>
   </ItemGroup>
@@ -40,15 +43,18 @@
       <Filter>PCH</Filter>
     </ClInclude>
     <ClInclude Include="ServerSession.h">
-      <Filter>Session</Filter>
+      <Filter>Packet</Filter>
     </ClInclude>
     <ClInclude Include="Protocol.pb.h">
       <Filter>Protobuf</Filter>
     </ClInclude>
-    <ClInclude Include="ServerPacketHandler.h">
-      <Filter>Session</Filter>
+    <ClInclude Include="ClientPacketHandler.h">
+      <Filter>Packet</Filter>
     </ClInclude>
     <ClInclude Include="Struct.pb.h">
+      <Filter>Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum.pb.h">
       <Filter>Protobuf</Filter>
     </ClInclude>
   </ItemGroup>
@@ -57,6 +63,9 @@
       <Filter>Protobuf</Filter>
     </None>
     <None Include="..\Protoc\bin\Struct.proto">
+      <Filter>Protobuf</Filter>
+    </None>
+    <None Include="..\Protoc\bin\Enum.proto">
       <Filter>Protobuf</Filter>
     </None>
   </ItemGroup>

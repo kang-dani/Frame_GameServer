@@ -7,14 +7,11 @@
     <Filter Include="PCH">
       <UniqueIdentifier>{6fc19bdf-80bd-415e-ab3d-229fe7715062}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sesssion">
-      <UniqueIdentifier>{e2049c5b-53db-490c-ae98-fdbdcbeae918}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Protobuf">
       <UniqueIdentifier>{3d18b345-8e8d-4d53-b4c6-9a4f62982f99}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameRoom">
-      <UniqueIdentifier>{14fb68ad-2fc1-498b-a8d8-532a1c72a221}</UniqueIdentifier>
+    <Filter Include="Packet">
+      <UniqueIdentifier>{e2049c5b-53db-490c-ae98-fdbdcbeae918}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -25,25 +22,22 @@
       <Filter>PCH</Filter>
     </ClCompile>
     <ClCompile Include="ClientSession.cpp">
-      <Filter>Sesssion</Filter>
+      <Filter>Packet</Filter>
     </ClCompile>
     <ClCompile Include="SessionManager.cpp">
-      <Filter>Sesssion</Filter>
+      <Filter>Packet</Filter>
     </ClCompile>
     <ClCompile Include="Protocol.pb.cc">
       <Filter>Protobuf</Filter>
     </ClCompile>
-    <ClCompile Include="ClientPacketHandler.cpp">
-      <Filter>Sesssion</Filter>
+    <ClCompile Include="ServerPacketHandler.cpp">
+      <Filter>Packet</Filter>
     </ClCompile>
     <ClCompile Include="Struct.pb.cc">
       <Filter>Protobuf</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>GameRoom</Filter>
-    </ClCompile>
-    <ClCompile Include="GameRoom.cpp">
-      <Filter>GameRoom</Filter>
+    <ClCompile Include="Enum.pb.cc">
+      <Filter>Protobuf</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,25 +45,22 @@
       <Filter>PCH</Filter>
     </ClInclude>
     <ClInclude Include="ClientSession.h">
-      <Filter>Sesssion</Filter>
+      <Filter>Packet</Filter>
     </ClInclude>
     <ClInclude Include="SessionManager.h">
-      <Filter>Sesssion</Filter>
+      <Filter>Packet</Filter>
     </ClInclude>
     <ClInclude Include="Protocol.pb.h">
       <Filter>Protobuf</Filter>
     </ClInclude>
-    <ClInclude Include="ClientPacketHandler.h">
-      <Filter>Sesssion</Filter>
+    <ClInclude Include="ServerPacketHandler.h">
+      <Filter>Packet</Filter>
     </ClInclude>
     <ClInclude Include="Struct.pb.h">
       <Filter>Protobuf</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>GameRoom</Filter>
-    </ClInclude>
-    <ClInclude Include="GameRoom.h">
-      <Filter>GameRoom</Filter>
+    <ClInclude Include="Enum.pb.h">
+      <Filter>Protobuf</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +68,9 @@
       <Filter>Protobuf</Filter>
     </None>
     <None Include="..\Protoc\bin\Struct.proto">
+      <Filter>Protobuf</Filter>
+    </None>
+    <None Include="..\Protoc\bin\Enum.proto">
       <Filter>Protobuf</Filter>
     </None>
   </ItemGroup>
