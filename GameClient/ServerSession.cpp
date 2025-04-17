@@ -8,8 +8,7 @@ void ServerSession::OnConnected()
 {
     // 클라이언트에서 로그인 정보를 입력받아 패킷 생성
     Protocol::LoginRequest packet;
-    packet.set_user_id("player1");               // 사용자 이름
-    packet.set_token("debug-token-12345");        // 임시 토큰 (이후 실제 토큰 사용)
+	packet.set_usernickname(packet.usernickname());
 
     auto sendBuffer = ClientPacketHandler::MakeSendBuffer(packet);
     Send(sendBuffer);

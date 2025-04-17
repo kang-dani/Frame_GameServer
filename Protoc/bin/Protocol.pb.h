@@ -218,35 +218,20 @@ class LoginRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kUserIdFieldNumber = 1,
-    kTokenFieldNumber = 2,
+    kUserNicknameFieldNumber = 1,
   };
-  // string user_id = 1;
-  void clear_user_id();
-  const std::string& user_id() const;
+  // string userNickname = 1;
+  void clear_usernickname();
+  const std::string& usernickname() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_user_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_user_id();
-  PROTOBUF_NODISCARD std::string* release_user_id();
-  void set_allocated_user_id(std::string* user_id);
+  void set_usernickname(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_usernickname();
+  PROTOBUF_NODISCARD std::string* release_usernickname();
+  void set_allocated_usernickname(std::string* usernickname);
   private:
-  const std::string& _internal_user_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_user_id(const std::string& value);
-  std::string* _internal_mutable_user_id();
-  public:
-
-  // string token = 2;
-  void clear_token();
-  const std::string& token() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_token(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_token();
-  PROTOBUF_NODISCARD std::string* release_token();
-  void set_allocated_token(std::string* token);
-  private:
-  const std::string& _internal_token() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_token(const std::string& value);
-  std::string* _internal_mutable_token();
+  const std::string& _internal_usernickname() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_usernickname(const std::string& value);
+  std::string* _internal_mutable_usernickname();
   public:
 
   // @@protoc_insertion_point(class_scope:Protocol.LoginRequest)
@@ -257,8 +242,7 @@ class LoginRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_id_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr usernickname_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -388,7 +372,9 @@ class LoginResponse final :
 
   enum : int {
     kErrorMessageFieldNumber = 2,
+    kUserNicknameFieldNumber = 4,
     kSuccessFieldNumber = 1,
+    kPlayerIDFieldNumber = 3,
   };
   // string error_message = 2;
   void clear_error_message();
@@ -404,6 +390,20 @@ class LoginResponse final :
   std::string* _internal_mutable_error_message();
   public:
 
+  // string userNickname = 4;
+  void clear_usernickname();
+  const std::string& usernickname() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_usernickname(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_usernickname();
+  PROTOBUF_NODISCARD std::string* release_usernickname();
+  void set_allocated_usernickname(std::string* usernickname);
+  private:
+  const std::string& _internal_usernickname() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_usernickname(const std::string& value);
+  std::string* _internal_mutable_usernickname();
+  public:
+
   // bool success = 1;
   void clear_success();
   bool success() const;
@@ -411,6 +411,15 @@ class LoginResponse final :
   private:
   bool _internal_success() const;
   void _internal_set_success(bool value);
+  public:
+
+  // uint32 playerID = 3;
+  void clear_playerid();
+  uint32_t playerid() const;
+  void set_playerid(uint32_t value);
+  private:
+  uint32_t _internal_playerid() const;
+  void _internal_set_playerid(uint32_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:Protocol.LoginResponse)
@@ -422,7 +431,9 @@ class LoginResponse final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_message_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr usernickname_;
     bool success_;
+    uint32_t playerid_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2004,104 +2015,54 @@ class ActionResponse final :
 #endif  // __GNUC__
 // LoginRequest
 
-// string user_id = 1;
-inline void LoginRequest::clear_user_id() {
-  _impl_.user_id_.ClearToEmpty();
+// string userNickname = 1;
+inline void LoginRequest::clear_usernickname() {
+  _impl_.usernickname_.ClearToEmpty();
 }
-inline const std::string& LoginRequest::user_id() const {
-  // @@protoc_insertion_point(field_get:Protocol.LoginRequest.user_id)
-  return _internal_user_id();
+inline const std::string& LoginRequest::usernickname() const {
+  // @@protoc_insertion_point(field_get:Protocol.LoginRequest.userNickname)
+  return _internal_usernickname();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void LoginRequest::set_user_id(ArgT0&& arg0, ArgT... args) {
+void LoginRequest::set_usernickname(ArgT0&& arg0, ArgT... args) {
  
- _impl_.user_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.LoginRequest.user_id)
+ _impl_.usernickname_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.LoginRequest.userNickname)
 }
-inline std::string* LoginRequest::mutable_user_id() {
-  std::string* _s = _internal_mutable_user_id();
-  // @@protoc_insertion_point(field_mutable:Protocol.LoginRequest.user_id)
+inline std::string* LoginRequest::mutable_usernickname() {
+  std::string* _s = _internal_mutable_usernickname();
+  // @@protoc_insertion_point(field_mutable:Protocol.LoginRequest.userNickname)
   return _s;
 }
-inline const std::string& LoginRequest::_internal_user_id() const {
-  return _impl_.user_id_.Get();
+inline const std::string& LoginRequest::_internal_usernickname() const {
+  return _impl_.usernickname_.Get();
 }
-inline void LoginRequest::_internal_set_user_id(const std::string& value) {
+inline void LoginRequest::_internal_set_usernickname(const std::string& value) {
   
-  _impl_.user_id_.Set(value, GetArenaForAllocation());
+  _impl_.usernickname_.Set(value, GetArenaForAllocation());
 }
-inline std::string* LoginRequest::_internal_mutable_user_id() {
+inline std::string* LoginRequest::_internal_mutable_usernickname() {
   
-  return _impl_.user_id_.Mutable(GetArenaForAllocation());
+  return _impl_.usernickname_.Mutable(GetArenaForAllocation());
 }
-inline std::string* LoginRequest::release_user_id() {
-  // @@protoc_insertion_point(field_release:Protocol.LoginRequest.user_id)
-  return _impl_.user_id_.Release();
+inline std::string* LoginRequest::release_usernickname() {
+  // @@protoc_insertion_point(field_release:Protocol.LoginRequest.userNickname)
+  return _impl_.usernickname_.Release();
 }
-inline void LoginRequest::set_allocated_user_id(std::string* user_id) {
-  if (user_id != nullptr) {
+inline void LoginRequest::set_allocated_usernickname(std::string* usernickname) {
+  if (usernickname != nullptr) {
     
   } else {
     
   }
-  _impl_.user_id_.SetAllocated(user_id, GetArenaForAllocation());
+  _impl_.usernickname_.SetAllocated(usernickname, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.user_id_.IsDefault()) {
-    _impl_.user_id_.Set("", GetArenaForAllocation());
+  if (_impl_.usernickname_.IsDefault()) {
+    _impl_.usernickname_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.LoginRequest.user_id)
-}
-
-// string token = 2;
-inline void LoginRequest::clear_token() {
-  _impl_.token_.ClearToEmpty();
-}
-inline const std::string& LoginRequest::token() const {
-  // @@protoc_insertion_point(field_get:Protocol.LoginRequest.token)
-  return _internal_token();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void LoginRequest::set_token(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.LoginRequest.token)
-}
-inline std::string* LoginRequest::mutable_token() {
-  std::string* _s = _internal_mutable_token();
-  // @@protoc_insertion_point(field_mutable:Protocol.LoginRequest.token)
-  return _s;
-}
-inline const std::string& LoginRequest::_internal_token() const {
-  return _impl_.token_.Get();
-}
-inline void LoginRequest::_internal_set_token(const std::string& value) {
-  
-  _impl_.token_.Set(value, GetArenaForAllocation());
-}
-inline std::string* LoginRequest::_internal_mutable_token() {
-  
-  return _impl_.token_.Mutable(GetArenaForAllocation());
-}
-inline std::string* LoginRequest::release_token() {
-  // @@protoc_insertion_point(field_release:Protocol.LoginRequest.token)
-  return _impl_.token_.Release();
-}
-inline void LoginRequest::set_allocated_token(std::string* token) {
-  if (token != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.token_.SetAllocated(token, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.token_.IsDefault()) {
-    _impl_.token_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.LoginRequest.token)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.LoginRequest.userNickname)
 }
 
 // -------------------------------------------------------------------
@@ -2176,6 +2137,76 @@ inline void LoginResponse::set_allocated_error_message(std::string* error_messag
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:Protocol.LoginResponse.error_message)
+}
+
+// uint32 playerID = 3;
+inline void LoginResponse::clear_playerid() {
+  _impl_.playerid_ = 0u;
+}
+inline uint32_t LoginResponse::_internal_playerid() const {
+  return _impl_.playerid_;
+}
+inline uint32_t LoginResponse::playerid() const {
+  // @@protoc_insertion_point(field_get:Protocol.LoginResponse.playerID)
+  return _internal_playerid();
+}
+inline void LoginResponse::_internal_set_playerid(uint32_t value) {
+  
+  _impl_.playerid_ = value;
+}
+inline void LoginResponse::set_playerid(uint32_t value) {
+  _internal_set_playerid(value);
+  // @@protoc_insertion_point(field_set:Protocol.LoginResponse.playerID)
+}
+
+// string userNickname = 4;
+inline void LoginResponse::clear_usernickname() {
+  _impl_.usernickname_.ClearToEmpty();
+}
+inline const std::string& LoginResponse::usernickname() const {
+  // @@protoc_insertion_point(field_get:Protocol.LoginResponse.userNickname)
+  return _internal_usernickname();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LoginResponse::set_usernickname(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.usernickname_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.LoginResponse.userNickname)
+}
+inline std::string* LoginResponse::mutable_usernickname() {
+  std::string* _s = _internal_mutable_usernickname();
+  // @@protoc_insertion_point(field_mutable:Protocol.LoginResponse.userNickname)
+  return _s;
+}
+inline const std::string& LoginResponse::_internal_usernickname() const {
+  return _impl_.usernickname_.Get();
+}
+inline void LoginResponse::_internal_set_usernickname(const std::string& value) {
+  
+  _impl_.usernickname_.Set(value, GetArenaForAllocation());
+}
+inline std::string* LoginResponse::_internal_mutable_usernickname() {
+  
+  return _impl_.usernickname_.Mutable(GetArenaForAllocation());
+}
+inline std::string* LoginResponse::release_usernickname() {
+  // @@protoc_insertion_point(field_release:Protocol.LoginResponse.userNickname)
+  return _impl_.usernickname_.Release();
+}
+inline void LoginResponse::set_allocated_usernickname(std::string* usernickname) {
+  if (usernickname != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.usernickname_.SetAllocated(usernickname, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.usernickname_.IsDefault()) {
+    _impl_.usernickname_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Protocol.LoginResponse.userNickname)
 }
 
 // -------------------------------------------------------------------

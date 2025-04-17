@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "ServerPacketHandler.h"
 #include "PlayerIdGenerator.h"
+#include "PlayerLoginManager.h"
 #include "Player.h"
+
 
 bool Handle_INVALID(shared_ptr<PacketSession>& session, BYTE* buffer, int len)
 {
@@ -21,26 +23,28 @@ void ServerPacketHandler::Init()
 }
 
 bool ServerPacketHandler::Handle_LoginRequest(shared_ptr<PacketSession>& session, Protocol::LoginRequest& packet)
-{
-    shared_ptr<Player> player = make_shared<Player>();
-    player->id = PlayerIdGenerator::Generator();
-    player->name = packet.userNickname();
-    player->session = static_pointer_cast<ClientSession>(session);
+{  
+   shared_ptr<Player> player = make_shared<Player>();  
+   player->id = PlayerIdGenerator::Generator();  
+   player->name = packet.usernickname();
+   player->session = static_pointer_cast<ClientSession>(session); 
+   printf("플레이어 접속 완료\n");
+   printf("Player ID: %u, Nickname: %s\n", player->id, player->name.c_str());
 
-    // 서버 플레이어 목록에 등록
-    PlayerLoginManager::GetInstance().AddPlayer(player->id, player);
+   // 서버 플레이어 목록에 등록  
+   PlayerLoginManager::GetInstance().AddPlayer(player->id, player);  
 
-    Protocol::LoginResponse response;
-    response.set_success(true);
-    response.set_error_message("NULL");
-    //response.set_
-    //response.set_
+   Protocol::LoginResponse response;  
+   response.set_success(true);  
+   response.set_error_message("null");  
+   response.set_playerid(player->id);  
+   response.set_usernickname(player->name);  
 
-    // 5. 응답 전송
-    auto sendBuffer = MakeSendBuffer(response);
-    session->Send(sendBuffer);
+   // 5. 응답 전송  
+   auto sendBuffer = MakeSendBuffer(response);  
+   session->Send(sendBuffer);  
 
-    return response.success();
+   return response.success();  
 }
 
 

@@ -22,7 +22,7 @@ message LoginResponse {
 message EnterGameRequest {
     uint64 actor_id = 1;       // Actor ID
 }
-ㅣ
+
 // 게임 입장 응답
 message EnterGameResponse {
     bool success = 1;          // 성공 여부

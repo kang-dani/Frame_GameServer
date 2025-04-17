@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "Google.Protobuf/3.29.2": {
+      "Google.Protobuf/3.21.12": {
         "type": "package",
         "compile": {
           "lib/net5.0/Google.Protobuf.dll": {
@@ -18,14 +18,14 @@
     }
   },
   "libraries": {
-    "Google.Protobuf/3.29.2": {
-      "sha512": "98gc5v6WTfvfo6nXXUFyXOwwfehUGVn4tIis3AnCZabur8t6Eq0lo4eloWEYpdxPH9MrhnbAzHcMwPCS8lCWoQ==",
+    "Google.Protobuf/3.21.12": {
+      "sha512": "1TXWxQy0PDDM1NC/LojlX4YVh7NhOvvyriCfERzeUVTp0XNXv8mo/AyWxDYCvMQ9xRZHUVdWoE4/B8ridP8Btg==",
       "type": "package",
-      "path": "google.protobuf/3.29.2",
+      "path": "google.protobuf/3.21.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "google.protobuf.3.29.2.nupkg.sha512",
+        "google.protobuf.3.21.12.nupkg.sha512",
         "google.protobuf.nuspec",
         "lib/net45/Google.Protobuf.dll",
         "lib/net45/Google.Protobuf.pdb",
@@ -44,27 +44,27 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Google.Protobuf >= 3.29.2"
+      "Google.Protobuf >= 3.21.12"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Administrator\\.nuget\\packages\\": {},
+    "C:\\Users\\daeun4001\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\CPPSERVER\\Frame_GameServer\\ClientCSharp\\ClientCSharp.csproj",
+      "projectUniqueName": "C:\\Users\\daeun4001\\OneDrive\\Desktop\\CppServer\\Frame_GameServer\\ClientCSharp\\ClientCSharp.csproj",
       "projectName": "ClientCSharp",
-      "projectPath": "C:\\Users\\Administrator\\Desktop\\CPPSERVER\\Frame_GameServer\\ClientCSharp\\ClientCSharp.csproj",
-      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator\\Desktop\\CPPSERVER\\Frame_GameServer\\ClientCSharp\\obj\\",
+      "projectPath": "C:\\Users\\daeun4001\\OneDrive\\Desktop\\CppServer\\Frame_GameServer\\ClientCSharp\\ClientCSharp.csproj",
+      "packagesPath": "C:\\Users\\daeun4001\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\daeun4001\\OneDrive\\Desktop\\CppServer\\Frame_GameServer\\ClientCSharp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\daeun4001\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -99,7 +99,7 @@
         "dependencies": {
           "Google.Protobuf": {
             "target": "Package",
-            "version": "[3.29.2, )"
+            "version": "[3.21.12, )"
           }
         },
         "imports": [
@@ -113,30 +113,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.36, 6.0.36]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[6.0.36, 6.0.36]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.36, 6.0.36]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.36, 6.0.36]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

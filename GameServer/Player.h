@@ -1,11 +1,16 @@
 #pragma once
+#include <string>
+#include <memory>
+#include "Struct.pb.h"
 #include "ClientSession.h"
 
-class Player : public enanble_shared_from_this<Player>
+class ClientSession;
+
+class Player : public std::enable_shared_from_this<Player>
 {
 public:
 	uint32 id;
-	string name;
+	std::string name;
 
 public:
 	weak_ptr<ClientSession> session;
