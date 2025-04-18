@@ -18,7 +18,7 @@ int main()
 
     printf("============== Server  ================\n");
 
-    shared_ptr<Service> serverService = make_shared<ServerService>(L"127.0.0.1", 27015, []() {return make_shared<ClientSession>(); });
+    GameRoom<Service> serverService = make_shared<ServerService>(L"127.0.0.1", 27015, []() {return make_shared<ClientSession>(); });
 
 
     //serverService 시작하기

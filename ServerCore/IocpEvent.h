@@ -17,7 +17,7 @@ class IocpEvent : public OVERLAPPED
 {
 public:
 	EventType eventType;
-	shared_ptr<IocpObj> owner;
+	GameRoom<IocpObj> owner;
 public:
 	IocpEvent(EventType type);
 public:
@@ -28,7 +28,7 @@ public:
 class AcceptEvent : public IocpEvent
 {
 public:
-	shared_ptr<Session> session;
+	GameRoom<Session> session;
 public:
 	AcceptEvent() : IocpEvent(EventType::ACCEPT) {}
 };
@@ -61,7 +61,7 @@ class SendEvent : public IocpEvent
 public:
 	//sendBuffer class·Î º¯°æ
 	//vector<BYTE> sendBuffer;
-	vector<shared_ptr<SendBuffer>> sendBuffers;
+	vector<GameRoom<SendBuffer>> sendBuffers;
 public:
 	SendEvent() : IocpEvent(EventType::SEND) {}
 };

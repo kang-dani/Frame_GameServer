@@ -3,6 +3,7 @@
 #include <memory>
 #include "Struct.pb.h"
 #include "ClientSession.h"
+#include "Protocol.pb.h"
 
 class ClientSession;
 

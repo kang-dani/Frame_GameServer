@@ -6,7 +6,7 @@ public:
 	~ClientSession() { printf("~ClientSession\n"); }
 public:
 	//ClientSession 주소 넘겨주기
-	shared_ptr<ClientSession> GetClientSession() { return static_pointer_cast<ClientSession>(shared_from_this()); }
+	GameRoom<ClientSession> GetClientSession() { return static_pointer_cast<ClientSession>(shared_from_this()); }
 
 public:
 	virtual void OnConnected() override;

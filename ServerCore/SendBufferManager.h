@@ -18,15 +18,15 @@ public:
 	SendBufferManager& operator=(const SendBufferManager&) = delete;
 private:
 	shared_mutex rwLock;
-	vector<shared_ptr<SendBufferChunk>> sendBufferChunks;
+	vector<GameRoom<SendBufferChunk>> sendBufferChunks;
 public:
 	//각 스레드가 sendBufferChunks에서 꺼내거나 새로 만든 SendBufferChunk를 로컬 스토리지에 연결 시켜 놓게
-	static thread_local shared_ptr<SendBufferChunk> localSendBufferChunk;
+	static thread_local GameRoom<SendBufferChunk> localSendBufferChunk;
 public:
-	shared_ptr<SendBuffer> Open(int size);
+	GameRoom<SendBuffer> Open(int size);
 public:
-	shared_ptr<SendBufferChunk> Pop();
-	void Push(shared_ptr<SendBufferChunk> bufferChunk);
+	GameRoom<SendBufferChunk> Pop();
+	void Push(GameRoom<SendBufferChunk> bufferChunk);
 	static void PushGlobal(SendBufferChunk* bufferChunck);
 
 

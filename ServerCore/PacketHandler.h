@@ -3,26 +3,26 @@
 #include "SendBufferManager.h"
 #include <functional>
 
-bool Handle_INVALID(shared_ptr<PacketSession>& session, BYTE* buffer, int len);
+bool Handle_INVALID(GameRoom<PacketSession>& session, BYTE* buffer, int len);
 
 class PacketHandler
 {
 protected:
-    using PacketFunc = function<bool(shared_ptr<PacketSession>&, BYTE*, int)>;
+    using PacketFunc = function<bool(GameRoom<PacketSession>&, BYTE*, int)>;
     static PacketFunc packetHandlers[UINT16_MAX];
 public:
     static void Init();
-    static bool HandlePacket(shared_ptr<PacketSession>& session, BYTE* buffer, int len);
+    static bool HandlePacket(GameRoom<PacketSession>& session, BYTE* buffer, int len);
 protected:
     template<typename PacketType, typename Handler>
     static void RegisterPacketHandler(uint16 packetId, Handler handler)
     {
-        packetHandlers[packetId] = [handler](shared_ptr<PacketSession>& session, BYTE* buffer, int len)
+        packetHandlers[packetId] = [handler](GameRoom<PacketSession>& session, BYTE* buffer, int len)
             { return HandlePacket<PacketType>(handler, session, buffer, len); };
     }
 protected:
     template<typename PacketType, typename ProcessFunc>
-    static bool HandlePacket(ProcessFunc func, shared_ptr<PacketSession>& session, BYTE* buffer, int len)
+    static bool HandlePacket(ProcessFunc func, GameRoom<PacketSession>& session, BYTE* buffer, int len)
     {
         if (len < sizeof(PacketHeader)) {
             printf("Invalid packet length: %d\n", len);
@@ -39,12 +39,12 @@ protected:
     }
 protected:
     template<typename T>
-    static shared_ptr<SendBuffer> MakeSendBuffer(T& packet, uint16 id)
+    static GameRoom<SendBuffer> MakeSendBuffer(T& packet, uint16 id)
     {
         uint16 dataSize = (uint16)packet.ByteSizeLong();
         uint16 packetSize = dataSize + sizeof(PacketHeader);   //dataSize + 4byte
 
-        shared_ptr<SendBuffer> sendBuffer = SendBufferManager::Get().Open(packetSize); // 4096에서 개선
+        GameRoom<SendBuffer> sendBuffer = SendBufferManager::Get().Open(packetSize); // 4096에서 개선
         PacketHeader* buffer = (PacketHeader*)sendBuffer->GetBuffer();
 
         buffer->size = packetSize;

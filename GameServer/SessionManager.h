@@ -18,10 +18,10 @@ public:
 	SessionManager& operator=(const SessionManager&) = delete;
 private:
 	shared_mutex rwLock;
-	set<shared_ptr<ClientSession>> sessions;
+	set<GameRoom<ClientSession>> sessions;
 public:
-	void Add(shared_ptr<ClientSession> session);
-	void Remove(shared_ptr<ClientSession> session);
-	void Broadcast(shared_ptr<class SendBuffer> buffer);
+	void Add(GameRoom<ClientSession> session);
+	void Remove(GameRoom<ClientSession> session);
+	void Broadcast(GameRoom<class SendBuffer> buffer);
 };
 

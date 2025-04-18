@@ -7,7 +7,7 @@ class ServerService;
 class Listener : public IocpObj
 {
 private:
-	shared_ptr<ServerService> serverService = nullptr;
+	GameRoom<ServerService> serverService = nullptr;
 	SOCKET socket = INVALID_SOCKET;
 	vector<AcceptEvent*> accentEvents;	//Ãß°¡
 public:

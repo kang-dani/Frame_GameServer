@@ -10,7 +10,7 @@ void SendBufferChunk::Init()
     usedsize = 0;
 }
 
-shared_ptr<SendBuffer> SendBufferChunk::Open(int size)
+GameRoom<SendBuffer> SendBufferChunk::Open(int size)
 {
     //사용할려는 데이터가 BUFFER_SIZE보다 크면
     if (size > BUFFER_SIZE)

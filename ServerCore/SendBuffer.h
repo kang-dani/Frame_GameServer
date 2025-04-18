@@ -9,12 +9,12 @@ private:
 	//vector<BYTE> buffer;
 	BYTE* buffer; // 실제 어디다 써야 할지 주소만
 	//내가 사용하고 있는 거대한 메모리 주소
-	shared_ptr<SendBufferChunk> sendBufferChunk;
+	GameRoom<SendBufferChunk> sendBufferChunk;
 	//여유 공간 
 	int freeSize = 0;
 	int writeSize = 0;
 public:
-	SendBuffer(shared_ptr<SendBufferChunk> chunk, BYTE* start, int size);
+	SendBuffer(GameRoom<SendBufferChunk> chunk, BYTE* start, int size);
 	~SendBuffer();
 public:
 	BYTE* GetBuffer() { return buffer; }

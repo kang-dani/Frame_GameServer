@@ -3,9 +3,9 @@
 class ClientService	 : public Service
 {
 private:
-	shared_ptr<Session> session;
+	GameRoom<Session> session;
 public:
-	shared_ptr<Session> GetSession() { return session; }
+	GameRoom<Session> GetSession() { return session; }
 public:
 	ClientService(wstring ip, uint16 port, SessionFactory factory);
 	virtual ~ClientService() {}

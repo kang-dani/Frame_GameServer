@@ -5,7 +5,7 @@ class IocpCore;
 class Session;
 
 //스마트 포인터로 관리
-using SessionFactory = function<shared_ptr<Session>(void)>;
+using SessionFactory = function<GameRoom<Session>(void)>;
 
 enum class ServiceType : uint8
 {
@@ -21,11 +21,11 @@ private:
 	ServiceType serviceType = ServiceType::NONE;
 	SOCKADDR_IN sockAddr = {};
 	//스마트 포인터로 관리
-	shared_ptr<IocpCore> iocpCore;
+	GameRoom<IocpCore> iocpCore;
 protected:
 	shared_mutex rwLock;
 	//스마트 포인터로 관리
-	set<shared_ptr<Session>> sessions;
+	set<GameRoom<Session>> sessions;
 	int sessionCount = 0;
 	SessionFactory sessionFactory;		
 public:
@@ -35,13 +35,13 @@ public:
 	ServiceType GetServiceType() const { return serviceType; }
 	SOCKADDR_IN& GetSockAddr() { return sockAddr; }
 	//스마트 포인터
-	shared_ptr<IocpCore> GetIocpCore() const { return iocpCore; }
+	GameRoom<IocpCore> GetIocpCore() const { return iocpCore; }
 	int GetSessionCount() const { return sessionCount; }
 public:
 	//스마트 포인터로 관리
-	shared_ptr<Session> CreateSession();
-	void AddSession(shared_ptr<Session> session);
-	void RemoveSession(shared_ptr<Session> session);
+	GameRoom<Session> CreateSession();
+	void AddSession(GameRoom<Session> session);
+	void RemoveSession(GameRoom<Session> session);
 	
 public:
 	virtual bool Start() abstract;
