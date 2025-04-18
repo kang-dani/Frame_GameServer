@@ -5,7 +5,7 @@
 #include "Player.h"
 #include "Protocol.pb.h"
 
-using PlayerPtr = std::GameRoom<Player>;
+using PlayerPtr = std::shared_ptr<Player>;
 
 struct GameRoom
 {

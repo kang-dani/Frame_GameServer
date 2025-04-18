@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "ClientPacketHandler.h"
 
-bool Handle_INVALID(GameRoom<PacketSession>& session, BYTE* buffer, int len)
+bool Handle_INVALID(shared_ptr<PacketSession>& session, BYTE* buffer, int len)
 {
     return false;
 }
@@ -17,7 +17,7 @@ void ClientPacketHandler::Init()
     RegisterPacketHandler<Protocol::ActionResponse>(PacketID::WORLD_STATE_UPDATE, Handle_WorldStateUpdate);
 }
 
-bool ClientPacketHandler::Handle_LoginResponse(GameRoom<PacketSession>& session, Protocol::LoginResponse& packet)
+bool ClientPacketHandler::Handle_LoginResponse(shared_ptr<PacketSession>& session, Protocol::LoginResponse& packet)
 {
     if (packet.success()) {
         // 1. 로그인 성공 처리
@@ -37,30 +37,30 @@ bool ClientPacketHandler::Handle_LoginResponse(GameRoom<PacketSession>& session,
     return true;
 }
 
-bool ClientPacketHandler::Handle_EnterGameResponse(GameRoom<PacketSession>& session, Protocol::EnterGameResponse& packet)
+bool ClientPacketHandler::Handle_EnterGameResponse(shared_ptr<PacketSession>& session, Protocol::EnterGameResponse& packet)
 {
     printf("Entered game world. Welcome!\n");
     return true;
 }
 
-bool ClientPacketHandler::Handle_PlayerMoveResponse(GameRoom<PacketSession>& session, Protocol::PlayerMoveResponse& packet)
+bool ClientPacketHandler::Handle_PlayerMoveResponse(shared_ptr<PacketSession>& session, Protocol::PlayerMoveResponse& packet)
 {
     printf("Player move acknowledged.\n");
     return true;
 }
 
-bool ClientPacketHandler::Handle_ChatResponse(GameRoom<PacketSession>& session, Protocol::ChatResponse& packet)
+bool ClientPacketHandler::Handle_ChatResponse(shared_ptr<PacketSession>& session, Protocol::ChatResponse& packet)
 {
     return true;
 }
 
-bool ClientPacketHandler::Handle_ActionResponse(GameRoom<PacketSession>& session, Protocol::ActionResponse& packet)
+bool ClientPacketHandler::Handle_ActionResponse(shared_ptr<PacketSession>& session, Protocol::ActionResponse& packet)
 {
     printf("Action response received.\n");
     return true;
 }
 
-bool ClientPacketHandler::Handle_WorldStateUpdate(GameRoom<PacketSession>& session, Protocol::ActionResponse& packet)
+bool ClientPacketHandler::Handle_WorldStateUpdate(shared_ptr<PacketSession>& session, Protocol::ActionResponse& packet)
 {
     printf("World state updated.\n");
     return true;

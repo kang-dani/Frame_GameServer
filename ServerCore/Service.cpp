@@ -35,10 +35,10 @@ Service::~Service()
 }
 
 //스마트 포인터로 변환
-GameRoom<Session> Service::CreateSession()
+shared_ptr<Session> Service::CreateSession()
 {
     //스마트 포인터로 변환
-    GameRoom<Session> session = sessionFactory();
+    shared_ptr<Session> session = sessionFactory();
 
     //this -> shared_from_this
     session->SetService(shared_from_this());
@@ -51,14 +51,14 @@ GameRoom<Session> Service::CreateSession()
 }
 
 //스마트 포인터로 변환
-void Service::AddSession(GameRoom<Session> session)
+void Service::AddSession(shared_ptr<Session> session)
 {
     unique_lock<shared_mutex> lock(rwLock);
     sessionCount++;
     sessions.insert(session);
 }
 //스마트 포인터로 변환
-void Service::RemoveSession(GameRoom<Session> session)
+void Service::RemoveSession(shared_ptr<Session> session)
 {
     unique_lock<shared_mutex> lock(rwLock);
     sessions.erase(session);

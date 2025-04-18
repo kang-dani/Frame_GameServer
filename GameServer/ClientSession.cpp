@@ -11,7 +11,7 @@ void ClientSession::OnConnected()
 
 int ClientSession::OnRecvPacket(BYTE* buffer, int len)
 {
-    GameRoom<PacketSession> session = GetPacketSession();
+    shared_ptr<PacketSession> session = GetPacketSession();
     ServerPacketHandler::HandlePacket(session, buffer, len);
 
     return len;

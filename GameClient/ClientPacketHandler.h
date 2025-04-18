@@ -29,42 +29,42 @@ public:
     static void Init();
 
     // 패킷 수신 핸들러 함수
-    static bool Handle_LoginResponse(GameRoom<PacketSession>& session, Protocol::LoginResponse& packet);
-    static bool Handle_EnterGameResponse(GameRoom<PacketSession>& session, Protocol::EnterGameResponse& packet);
-    static bool Handle_PlayerMoveResponse(GameRoom<PacketSession>& session, Protocol::PlayerMoveResponse& packet);
-    static bool Handle_ChatResponse(GameRoom<PacketSession>& session, Protocol::ChatResponse& packet);
-    static bool Handle_ActionResponse(GameRoom<PacketSession>& session, Protocol::ActionResponse& packet);
-    static bool Handle_WorldStateUpdate(GameRoom<PacketSession>& session, Protocol::ActionResponse& packet);
+    static bool Handle_LoginResponse(std::shared_ptr<PacketSession>& session, Protocol::LoginResponse& packet);
+    static bool Handle_EnterGameResponse(std::shared_ptr<PacketSession>& session, Protocol::EnterGameResponse& packet);
+    static bool Handle_PlayerMoveResponse(std::shared_ptr<PacketSession>& session, Protocol::PlayerMoveResponse& packet);
+    static bool Handle_ChatResponse(std::shared_ptr<PacketSession>& session, Protocol::ChatResponse& packet);
+    static bool Handle_ActionResponse(std::shared_ptr<PacketSession>& session, Protocol::ActionResponse& packet);
+    static bool Handle_WorldStateUpdate(std::shared_ptr<PacketSession>& session, Protocol::ActionResponse& packet);
 
 public:
     // 클라이언트 → 서버 패킷 전송 (Send)
-    static GameRoom<SendBuffer> MakeSendBuffer(Protocol::LoginRequest& packet)
+    static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::LoginRequest& packet)
     {
         return MakeSendBuffer(packet, PacketID::LOGIN_REQUEST);
     }
 
-    static GameRoom<SendBuffer> MakeSendBuffer(Protocol::EnterGameRequest& packet)
+    static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::EnterGameRequest& packet)
     {
         return MakeSendBuffer(packet, PacketID::ENTER_GAME_REQUEST);
     }
 
-    static GameRoom<SendBuffer> MakeSendBuffer(Protocol::PlayerMoveRequest& packet)
+    static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::PlayerMoveRequest& packet)
     {
         return MakeSendBuffer(packet, PacketID::PLAYER_MOVE_REQUEST);
     }
 
-    static GameRoom<SendBuffer> MakeSendBuffer(Protocol::ChatRequest& packet)
+    static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::ChatRequest& packet)
     {
         return MakeSendBuffer(packet, PacketID::CHAT_REQUEST);
     }
 
-    static GameRoom<SendBuffer> MakeSendBuffer(Protocol::ActionRequest& packet)
+    static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::ActionRequest& packet)
     {
         return MakeSendBuffer(packet, PacketID::ACTION_REQUEST);
     }
 public:
     template<typename T>
-    static GameRoom<SendBuffer> MakeSendBuffer(T& packet, PacketID packetId)
+    static shared_ptr<SendBuffer> MakeSendBuffer(T& packet, PacketID packetId)
     {
         // enum class -> uint16 변환 후 protected 호출
         return PacketHandler::MakeSendBuffer(packet, static_cast<uint16_t>(packetId));

@@ -128,7 +128,7 @@ void Session::ProcessConnect()
 
 
 //수정
-void Session::Send(GameRoom<SendBuffer> sendBuffer)
+void Session::Send(shared_ptr<SendBuffer> sendBuffer)
 {
 	//연결 안되어 있음 return
 	if (!IsConnected())
@@ -181,7 +181,7 @@ void Session::RegisterSend()
 	while (!sendQueue.empty())
 	{
 		//sendQueue의 앞부분부터 pop시키기 위해서 앞부분 데이터 캐싱
-		GameRoom<SendBuffer> sendBuffer = sendQueue.front();
+		shared_ptr<SendBuffer> sendBuffer = sendQueue.front();
 		//얼마나 사용했는지 크기 추가
 		writeSize += sendBuffer->WriteSize();
 

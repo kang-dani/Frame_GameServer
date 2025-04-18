@@ -5,7 +5,7 @@
 #include "Player.h"
 
 
-bool Handle_INVALID(GameRoom<PacketSession>& session, BYTE* buffer, int len)
+bool Handle_INVALID(shared_ptr<PacketSession>& session, BYTE* buffer, int len)
 {
     return false;
 }
@@ -22,9 +22,9 @@ void ServerPacketHandler::Init()
     RegisterPacketHandler<Protocol::ActionRequest>(PacketID::ACTION_REQUEST, Handle_ActionRequest);
 }
 
-bool ServerPacketHandler::Handle_LoginRequest(GameRoom<PacketSession>& session, Protocol::LoginRequest& packet)
+bool ServerPacketHandler::Handle_LoginRequest(shared_ptr<PacketSession>& session, Protocol::LoginRequest& packet)
 {  
-   GameRoom<Player> player = make_shared<Player>();  
+   shared_ptr<Player> player = make_shared<Player>();
    player->id = PlayerIdGenerator::Generator();  
    player->name = packet.usernickname();
    player->session = static_pointer_cast<ClientSession>(session); 
@@ -50,28 +50,28 @@ bool ServerPacketHandler::Handle_LoginRequest(GameRoom<PacketSession>& session, 
 
 
 // 게임 입장 요청
-bool ServerPacketHandler::Handle_EnterGameRequest(GameRoom<PacketSession>& session, Protocol::EnterGameRequest& packet)
+bool ServerPacketHandler::Handle_EnterGameRequest(shared_ptr<PacketSession>& session, Protocol::EnterGameRequest& packet)
 {
 
     return true;
 }
 
 // 플레이어 이동 요청 처리
-bool ServerPacketHandler::Handle_PlayerMoveRequest(GameRoom<PacketSession>& session, Protocol::PlayerMoveRequest& packet)
+bool ServerPacketHandler::Handle_PlayerMoveRequest(shared_ptr<PacketSession>& session, Protocol::PlayerMoveRequest& packet)
 {
 
     return true;
 }
 
 // 채팅 요청 처리
-bool ServerPacketHandler::Handle_ChatRequest(GameRoom<PacketSession>& session, Protocol::ChatRequest& packet)
+bool ServerPacketHandler::Handle_ChatRequest(shared_ptr<PacketSession>& session, Protocol::ChatRequest& packet)
 {
 
     return true;
 }
 
 // 액션 요청 처리
-bool ServerPacketHandler::Handle_ActionRequest(GameRoom<PacketSession>& session, Protocol::ActionRequest& packet)
+bool ServerPacketHandler::Handle_ActionRequest(shared_ptr<PacketSession>& session, Protocol::ActionRequest& packet)
 {
 
     return true;

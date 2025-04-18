@@ -12,7 +12,7 @@ class Session : public IocpObj
 private:
 	shared_mutex rwLock;	
 	atomic<bool> isConnected = false;
-	GameRoom<Service> service = nullptr;
+	shared_ptr<Service> service = nullptr;
 	SOCKET socket = INVALID_SOCKET;
 	SOCKADDR_IN sockAddr = {};
 private:
@@ -21,7 +21,7 @@ private:
 	RecvEvent recvEvent;
 	DisconnectEvent disconnectEvent;
 public:
-	queue<GameRoom<SendBuffer>> sendQueue;
+	queue<shared_ptr<SendBuffer>> sendQueue;
 	atomic <bool> sendRegistered = false;
 	RecvBuffer recvBuffer;
 public:
@@ -31,11 +31,11 @@ public:
 public:
 	SOCKET GetSocket() const { return socket; }
 	HANDLE GetHandle() override { return (HANDLE)socket; };
-	GameRoom<Service> GetService() const { return service; }
-	GameRoom<Session> GetSession() { return static_pointer_cast<Session>(shared_from_this()); }
+	shared_ptr<Service> GetService() const { return service; }
+	shared_ptr<Session> GetSession() { return static_pointer_cast<Session>(shared_from_this()); }
 public:
 	void SetSockAddr(SOCKADDR_IN address) { sockAddr = address; }
-	void SetService(GameRoom<Service> _service) { service = _service; }
+	void SetService(shared_ptr<Service> _service) { service = _service; }
 public:
 	bool IsConnected() const { return isConnected; }
 private:
@@ -57,7 +57,7 @@ public:
 	virtual void OnDisconnected() {}
 public:
 	bool Connect();
-	void Send(GameRoom<SendBuffer> sendBuffer);
+	void Send(shared_ptr<SendBuffer> sendBuffer);
 	void Disconnect(const WCHAR* cause);
 public:
 	void ObserveIO(IocpEvent* iocpEvent, DWORD byteTransferred) override;

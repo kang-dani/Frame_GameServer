@@ -2,7 +2,7 @@
 #include "SendBuffer.h"
 #include "SendBufferChunk.h"
 
-SendBuffer::SendBuffer(GameRoom<SendBufferChunk> chunk, BYTE* start, int size)
+SendBuffer::SendBuffer(shared_ptr<SendBufferChunk> chunk, BYTE* start, int size)
 	:sendBufferChunk(chunk), buffer(start), freeSize(size)
 {
 }

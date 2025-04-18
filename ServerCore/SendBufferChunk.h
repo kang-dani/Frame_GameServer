@@ -15,7 +15,7 @@ public:
 	int FreeSize() const { return buffer.size() - usedsize; }
 public:
 	void Init();
-	GameRoom<class SendBuffer> Open(int size);
+	shared_ptr<class SendBuffer> Open(int size);
 	//다쓰고 얼마 썻는지 알려 주기
 	void Close(int size);
 };

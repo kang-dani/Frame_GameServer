@@ -13,7 +13,7 @@ int main()
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     printf("============== Client  ================\n");
-     GameRoom<ClientService> clientService = make_shared<ClientService>(L"127.0.0.1", 27015, []() {return make_shared<ServerSession>(); });
+    shared_ptr<ClientService> clientService = make_shared<ClientService>(L"127.0.0.1", 27015, []() {return make_shared<ServerSession>(); });
 
      //1000명 정도 접속 시작
      for (int i = 0; i < 1; i++)

@@ -19,7 +19,7 @@ Listener::~Listener()
     }
 }
 
-bool Listener::StartAccept(GameRoom<ServerService> service)
+bool Listener::StartAccept(shared_ptr<ServerService> service)
 {
     serverService = service;
 
@@ -63,7 +63,7 @@ bool Listener::StartAccept(GameRoom<ServerService> service)
 
 void Listener::RegisterAccept(AcceptEvent* acceptEvent)
 {
-    GameRoom<Session> session = serverService->CreateSession();  
+    shared_ptr<Session> session = serverService->CreateSession();
 
     acceptEvent->Init();
     acceptEvent->session = session;
@@ -79,7 +79,7 @@ void Listener::RegisterAccept(AcceptEvent* acceptEvent)
 
 void Listener::ProcessAccept(AcceptEvent* acceptEvent)
 {
-    GameRoom<Session> session = acceptEvent->session;
+    shared_ptr<Session> session = acceptEvent->session;
 
     if (!SocketHelper::SetUpdateAcceptSocket(session->GetSocket(), socket))
     {

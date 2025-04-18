@@ -9,7 +9,7 @@ void PacketHandler::Init()
 		packetHandlers[i] = Handle_INVALID;
 }
 
-bool PacketHandler::HandlePacket(GameRoom<PacketSession>& session, BYTE* buffer, int len)
+bool PacketHandler::HandlePacket(shared_ptr<PacketSession>& session, BYTE* buffer, int len)
 {
 	PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
 	return packetHandlers[header->id](session, buffer, len);

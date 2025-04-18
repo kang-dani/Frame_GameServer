@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "SendBufferManager.h"
 
-thread_local GameRoom<SendBufferChunk> SendBufferManager::localSendBufferChunk = nullptr;
+thread_local shared_ptr<SendBufferChunk> SendBufferManager::localSendBufferChunk = nullptr;
 
-GameRoom<SendBuffer> SendBufferManager::Open(int size)
+shared_ptr<SendBuffer> SendBufferManager::Open(int size)
 {
     if (localSendBufferChunk == nullptr)
     {
@@ -29,14 +29,14 @@ GameRoom<SendBuffer> SendBufferManager::Open(int size)
 
 }
 
-GameRoom<SendBufferChunk> SendBufferManager::Pop()
+shared_ptr<SendBufferChunk> SendBufferManager::Pop()
 {
     {
         unique_lock<shared_mutex> lock(rwLock);
 
         if (!sendBufferChunks.empty())
         {
-            GameRoom<SendBufferChunk> sendBufferChunk = sendBufferChunks.back();
+            shared_ptr<SendBufferChunk> sendBufferChunk = sendBufferChunks.back();
             sendBufferChunks.pop_back();
 
             return sendBufferChunk;
@@ -44,7 +44,7 @@ GameRoom<SendBufferChunk> SendBufferManager::Pop()
         }
     }
 
-    return  GameRoom<SendBufferChunk>(new SendBufferChunk, PushGlobal);
+    return  shared_ptr<SendBufferChunk>(new SendBufferChunk, PushGlobal);
 }
 
 
@@ -52,11 +52,11 @@ void SendBufferManager::PushGlobal(SendBufferChunk* bufferChunck)
 {
     //체크하기 위해
     printf("Pushed Chunk : %u\n", Get().sendBufferChunks.size());
-    Get().Push(GameRoom<SendBufferChunk>(bufferChunck, PushGlobal));
+    Get().Push(shared_ptr<SendBufferChunk>(bufferChunck, PushGlobal));
   
 }
 
-void SendBufferManager::Push(GameRoom<SendBufferChunk> bufferChunk)
+void SendBufferManager::Push(shared_ptr<SendBufferChunk> bufferChunk)
 {
     unique_lock<shared_mutex> lock(rwLock);
     sendBufferChunks.push_back(bufferChunk);

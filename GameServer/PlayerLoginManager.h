@@ -14,13 +14,13 @@ public:
         return instance;
     }
 
-    void AddPlayer(uint32 playerId, GameRoom<Player> player)
+    void AddPlayer(uint32 playerId, shared_ptr<Player> player)
     {
         std::lock_guard<std::mutex> lock(_mutex);
         _players[playerId] = player;
     }
 
-    std::GameRoom<Player> GetPlayer(uint32 playerId)
+    std::shared_ptr<Player> GetPlayer(uint32 playerId)
     {
         std::lock_guard<std::mutex> lock(_mutex);
         auto it = _players.find(playerId);
@@ -35,10 +35,10 @@ public:
         _players.erase(playerId);
     }
 
-    const std::unordered_map<uint32, std::GameRoom<Player>>& GetAllPlayers() const { return _players; }
+    const std::unordered_map<uint32, std::shared_ptr<Player>>& GetAllPlayers() const { return _players; }
 
 private:
-    std::unordered_map<uint32, std::GameRoom<Player>> _players;
+    std::unordered_map<uint32, std::shared_ptr<Player>> _players;
     std::mutex _mutex;
 
     PlayerLoginManager() = default;

@@ -16,7 +16,7 @@ public:
 	virtual ~PacketSession() = default;
 public:
 	//PacketSession 주소 넘겨주기
-	GameRoom<PacketSession> GetPacketSession() { return static_pointer_cast<PacketSession>(shared_from_this()); }
+	shared_ptr<PacketSession> GetPacketSession() { return static_pointer_cast<PacketSession>(shared_from_this()); }
 public:
 	//sealed : 상속받은 자식이 이 함수를 오버라이드(덮어쓰기) 할수 없음
 	virtual int OnRecv(BYTE* buffer, int len) sealed;
