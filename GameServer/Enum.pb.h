@@ -47,44 +47,121 @@ PROTOBUF_NAMESPACE_OPEN
 PROTOBUF_NAMESPACE_CLOSE
 namespace Protocol {
 
-enum ActorStatus : int {
-  IDLE = 0,
-  MOVING = 1,
-  INTERACTING = 2,
-  DEAD = 3,
-  ATTACKING = 4,
-  ActorStatus_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  ActorStatus_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+enum PlayerStateType : int {
+  PLAYER_IDLE = 0,
+  PLAYER_MOVE = 1,
+  PLAYER_DEAD = 2,
+  PLAYER_ESCAPE = 3,
+  PlayerStateType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  PlayerStateType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
-bool ActorStatus_IsValid(int value);
-constexpr ActorStatus ActorStatus_MIN = IDLE;
-constexpr ActorStatus ActorStatus_MAX = ATTACKING;
-constexpr int ActorStatus_ARRAYSIZE = ActorStatus_MAX + 1;
+bool PlayerStateType_IsValid(int value);
+constexpr PlayerStateType PlayerStateType_MIN = PLAYER_IDLE;
+constexpr PlayerStateType PlayerStateType_MAX = PLAYER_ESCAPE;
+constexpr int PlayerStateType_ARRAYSIZE = PlayerStateType_MAX + 1;
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ActorStatus_descriptor();
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PlayerStateType_descriptor();
 template<typename T>
-inline const std::string& ActorStatus_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, ActorStatus>::value ||
+inline const std::string& PlayerStateType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, PlayerStateType>::value ||
     ::std::is_integral<T>::value,
-    "Incorrect type passed to function ActorStatus_Name.");
+    "Incorrect type passed to function PlayerStateType_Name.");
   return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    ActorStatus_descriptor(), enum_t_value);
+    PlayerStateType_descriptor(), enum_t_value);
 }
-inline bool ActorStatus_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ActorStatus* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ActorStatus>(
-    ActorStatus_descriptor(), name, value);
+inline bool PlayerStateType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, PlayerStateType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<PlayerStateType>(
+    PlayerStateType_descriptor(), name, value);
+}
+enum Role : int {
+  ROLE_UNSPECIFIED = 0,
+  ROLE_BOSS = 1,
+  ROLE_SURVIVOR = 2,
+  Role_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  Role_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool Role_IsValid(int value);
+constexpr Role Role_MIN = ROLE_UNSPECIFIED;
+constexpr Role Role_MAX = ROLE_SURVIVOR;
+constexpr int Role_ARRAYSIZE = Role_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Role_descriptor();
+template<typename T>
+inline const std::string& Role_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, Role>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function Role_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    Role_descriptor(), enum_t_value);
+}
+inline bool Role_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Role* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Role>(
+    Role_descriptor(), name, value);
+}
+enum EscapeType : int {
+  ESCAPE_DEAD = 0,
+  ESCAPE_EXIT_DOOR = 1,
+  ESCAPE_HATCH = 2,
+  EscapeType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  EscapeType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool EscapeType_IsValid(int value);
+constexpr EscapeType EscapeType_MIN = ESCAPE_DEAD;
+constexpr EscapeType EscapeType_MAX = ESCAPE_HATCH;
+constexpr int EscapeType_ARRAYSIZE = EscapeType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EscapeType_descriptor();
+template<typename T>
+inline const std::string& EscapeType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, EscapeType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function EscapeType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    EscapeType_descriptor(), enum_t_value);
+}
+inline bool EscapeType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, EscapeType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<EscapeType>(
+    EscapeType_descriptor(), name, value);
+}
+enum ErrorCode : int {
+  ERROR_NONE = 0,
+  ERROR_INVALID_CREDENTIALS = 1,
+  ERROR_SERVER_FULL = 2,
+  ERROR_UNKNOWN_ERROR = 99,
+  ErrorCode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  ErrorCode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool ErrorCode_IsValid(int value);
+constexpr ErrorCode ErrorCode_MIN = ERROR_NONE;
+constexpr ErrorCode ErrorCode_MAX = ERROR_UNKNOWN_ERROR;
+constexpr int ErrorCode_ARRAYSIZE = ErrorCode_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ErrorCode_descriptor();
+template<typename T>
+inline const std::string& ErrorCode_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, ErrorCode>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function ErrorCode_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    ErrorCode_descriptor(), enum_t_value);
+}
+inline bool ErrorCode_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ErrorCode* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ErrorCode>(
+    ErrorCode_descriptor(), name, value);
 }
 enum ActorRole : int {
-  DEFAULT = 0,
-  PLAYER = 1,
-  AI = 2,
-  ENVIRONMENT = 3,
+  PLAYER = 0,
+  AI = 1,
+  ENVIRONMENT = 2,
   ActorRole_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   ActorRole_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool ActorRole_IsValid(int value);
-constexpr ActorRole ActorRole_MIN = DEFAULT;
+constexpr ActorRole ActorRole_MIN = PLAYER;
 constexpr ActorRole ActorRole_MAX = ENVIRONMENT;
 constexpr int ActorRole_ARRAYSIZE = ActorRole_MAX + 1;
 
@@ -102,32 +179,32 @@ inline bool ActorRole_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ActorRole>(
     ActorRole_descriptor(), name, value);
 }
-enum ErrorCode : int {
-  NONE = 0,
-  INVALID_CREDENTIALS = 1,
-  SERVER_FULL = 2,
-  UNKNOWN_ERROR = 99,
-  ErrorCode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  ErrorCode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+enum BossType : int {
+  BOSS_NONE = 0,
+  BOSS_PEANUT = 1,
+  BOSS_VOMIT = 2,
+  BOSS_PROTEIN = 3,
+  BossType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  BossType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
-bool ErrorCode_IsValid(int value);
-constexpr ErrorCode ErrorCode_MIN = NONE;
-constexpr ErrorCode ErrorCode_MAX = UNKNOWN_ERROR;
-constexpr int ErrorCode_ARRAYSIZE = ErrorCode_MAX + 1;
+bool BossType_IsValid(int value);
+constexpr BossType BossType_MIN = BOSS_NONE;
+constexpr BossType BossType_MAX = BOSS_PROTEIN;
+constexpr int BossType_ARRAYSIZE = BossType_MAX + 1;
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ErrorCode_descriptor();
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* BossType_descriptor();
 template<typename T>
-inline const std::string& ErrorCode_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, ErrorCode>::value ||
+inline const std::string& BossType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, BossType>::value ||
     ::std::is_integral<T>::value,
-    "Incorrect type passed to function ErrorCode_Name.");
+    "Incorrect type passed to function BossType_Name.");
   return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    ErrorCode_descriptor(), enum_t_value);
+    BossType_descriptor(), enum_t_value);
 }
-inline bool ErrorCode_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ErrorCode* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ErrorCode>(
-    ErrorCode_descriptor(), name, value);
+inline bool BossType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, BossType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<BossType>(
+    BossType_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -151,20 +228,35 @@ inline bool ErrorCode_Parse(
 
 PROTOBUF_NAMESPACE_OPEN
 
-template <> struct is_proto_enum< ::Protocol::ActorStatus> : ::std::true_type {};
+template <> struct is_proto_enum< ::Protocol::PlayerStateType> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::Protocol::ActorStatus>() {
-  return ::Protocol::ActorStatus_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::Protocol::PlayerStateType>() {
+  return ::Protocol::PlayerStateType_descriptor();
+}
+template <> struct is_proto_enum< ::Protocol::Role> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::Protocol::Role>() {
+  return ::Protocol::Role_descriptor();
+}
+template <> struct is_proto_enum< ::Protocol::EscapeType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::Protocol::EscapeType>() {
+  return ::Protocol::EscapeType_descriptor();
+}
+template <> struct is_proto_enum< ::Protocol::ErrorCode> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::Protocol::ErrorCode>() {
+  return ::Protocol::ErrorCode_descriptor();
 }
 template <> struct is_proto_enum< ::Protocol::ActorRole> : ::std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::Protocol::ActorRole>() {
   return ::Protocol::ActorRole_descriptor();
 }
-template <> struct is_proto_enum< ::Protocol::ErrorCode> : ::std::true_type {};
+template <> struct is_proto_enum< ::Protocol::BossType> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::Protocol::ErrorCode>() {
-  return ::Protocol::ErrorCode_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::Protocol::BossType>() {
+  return ::Protocol::BossType_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

@@ -36,24 +36,21 @@ struct Vector3DefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Vector3DefaultTypeInternal _Vector3_default_instance_;
-PROTOBUF_CONSTEXPR ActorInfo::ActorInfo(
+PROTOBUF_CONSTEXPR TransformData::TransformData(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.additional_info_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.position_)*/nullptr
-  , /*decltype(_impl_.actor_id_)*/uint64_t{0u}
-  , /*decltype(_impl_.role_)*/0
-  , /*decltype(_impl_.status_)*/0
+    /*decltype(_impl_.position_)*/nullptr
+  , /*decltype(_impl_.scale_)*/nullptr
+  , /*decltype(_impl_.rotation_)*/nullptr
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct ActorInfoDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ActorInfoDefaultTypeInternal()
+struct TransformDataDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TransformDataDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ActorInfoDefaultTypeInternal() {}
+  ~TransformDataDefaultTypeInternal() {}
   union {
-    ActorInfo _instance;
+    TransformData _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ActorInfoDefaultTypeInternal _ActorInfo_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TransformDataDefaultTypeInternal _TransformData_default_instance_;
 }  // namespace Protocol
 static ::_pb::Metadata file_level_metadata_Struct_2eproto[2];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_Struct_2eproto = nullptr;
@@ -70,43 +67,39 @@ const uint32_t TableStruct_Struct_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(p
   PROTOBUF_FIELD_OFFSET(::Protocol::Vector3, _impl_.y_),
   PROTOBUF_FIELD_OFFSET(::Protocol::Vector3, _impl_.z_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::Protocol::ActorInfo, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::TransformData, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::Protocol::ActorInfo, _impl_.actor_id_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::ActorInfo, _impl_.name_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::ActorInfo, _impl_.role_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::ActorInfo, _impl_.position_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::ActorInfo, _impl_.status_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::ActorInfo, _impl_.additional_info_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::TransformData, _impl_.position_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::TransformData, _impl_.scale_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::TransformData, _impl_.rotation_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Protocol::Vector3)},
-  { 9, -1, -1, sizeof(::Protocol::ActorInfo)},
+  { 9, -1, -1, sizeof(::Protocol::TransformData)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::Protocol::_Vector3_default_instance_._instance,
-  &::Protocol::_ActorInfo_default_instance_._instance,
+  &::Protocol::_TransformData_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_Struct_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\014Struct.proto\022\010Protocol\032\nEnum.proto\"*\n\007"
   "Vector3\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\t\n\001z\030\003 \001(\002"
-  "\"\263\001\n\tActorInfo\022\020\n\010actor_id\030\001 \001(\004\022\014\n\004name"
-  "\030\002 \001(\t\022!\n\004role\030\003 \001(\0162\023.Protocol.ActorRol"
-  "e\022#\n\010position\030\004 \001(\0132\021.Protocol.Vector3\022%"
-  "\n\006status\030\005 \001(\0162\025.Protocol.ActorStatus\022\027\n"
-  "\017additional_info\030\006 \001(\tb\006proto3"
+  "\"{\n\rTransformData\022#\n\010position\030\001 \001(\0132\021.Pr"
+  "otocol.Vector3\022 \n\005scale\030\002 \001(\0132\021.Protocol"
+  ".Vector3\022#\n\010rotation\030\003 \001(\0132\021.Protocol.Ve"
+  "ctor3b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Struct_2eproto_deps[1] = {
   &::descriptor_table_Enum_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_Struct_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Struct_2eproto = {
-    false, false, 270, descriptor_table_protodef_Struct_2eproto,
+    false, false, 213, descriptor_table_protodef_Struct_2eproto,
     "Struct.proto",
     &descriptor_table_Struct_2eproto_once, descriptor_table_Struct_2eproto_deps, 1, 2,
     schemas, file_default_instances, TableStruct_Struct_2eproto::offsets,
@@ -394,84 +387,67 @@ void Vector3::InternalSwap(Vector3* other) {
 
 // ===================================================================
 
-class ActorInfo::_Internal {
+class TransformData::_Internal {
  public:
-  static const ::Protocol::Vector3& position(const ActorInfo* msg);
+  static const ::Protocol::Vector3& position(const TransformData* msg);
+  static const ::Protocol::Vector3& scale(const TransformData* msg);
+  static const ::Protocol::Vector3& rotation(const TransformData* msg);
 };
 
 const ::Protocol::Vector3&
-ActorInfo::_Internal::position(const ActorInfo* msg) {
+TransformData::_Internal::position(const TransformData* msg) {
   return *msg->_impl_.position_;
 }
-ActorInfo::ActorInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+const ::Protocol::Vector3&
+TransformData::_Internal::scale(const TransformData* msg) {
+  return *msg->_impl_.scale_;
+}
+const ::Protocol::Vector3&
+TransformData::_Internal::rotation(const TransformData* msg) {
+  return *msg->_impl_.rotation_;
+}
+TransformData::TransformData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:Protocol.ActorInfo)
+  // @@protoc_insertion_point(arena_constructor:Protocol.TransformData)
 }
-ActorInfo::ActorInfo(const ActorInfo& from)
+TransformData::TransformData(const TransformData& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ActorInfo* const _this = this; (void)_this;
+  TransformData* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.additional_info_){}
-    , decltype(_impl_.position_){nullptr}
-    , decltype(_impl_.actor_id_){}
-    , decltype(_impl_.role_){}
-    , decltype(_impl_.status_){}
+      decltype(_impl_.position_){nullptr}
+    , decltype(_impl_.scale_){nullptr}
+    , decltype(_impl_.rotation_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.additional_info_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.additional_info_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_additional_info().empty()) {
-    _this->_impl_.additional_info_.Set(from._internal_additional_info(), 
-      _this->GetArenaForAllocation());
-  }
   if (from._internal_has_position()) {
     _this->_impl_.position_ = new ::Protocol::Vector3(*from._impl_.position_);
   }
-  ::memcpy(&_impl_.actor_id_, &from._impl_.actor_id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.status_) -
-    reinterpret_cast<char*>(&_impl_.actor_id_)) + sizeof(_impl_.status_));
-  // @@protoc_insertion_point(copy_constructor:Protocol.ActorInfo)
+  if (from._internal_has_scale()) {
+    _this->_impl_.scale_ = new ::Protocol::Vector3(*from._impl_.scale_);
+  }
+  if (from._internal_has_rotation()) {
+    _this->_impl_.rotation_ = new ::Protocol::Vector3(*from._impl_.rotation_);
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.TransformData)
 }
 
-inline void ActorInfo::SharedCtor(
+inline void TransformData::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.additional_info_){}
-    , decltype(_impl_.position_){nullptr}
-    , decltype(_impl_.actor_id_){uint64_t{0u}}
-    , decltype(_impl_.role_){0}
-    , decltype(_impl_.status_){0}
+      decltype(_impl_.position_){nullptr}
+    , decltype(_impl_.scale_){nullptr}
+    , decltype(_impl_.rotation_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}
   };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.additional_info_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.additional_info_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
-ActorInfo::~ActorInfo() {
-  // @@protoc_insertion_point(destructor:Protocol.ActorInfo)
+TransformData::~TransformData() {
+  // @@protoc_insertion_point(destructor:Protocol.TransformData)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -479,92 +455,65 @@ ActorInfo::~ActorInfo() {
   SharedDtor();
 }
 
-inline void ActorInfo::SharedDtor() {
+inline void TransformData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.name_.Destroy();
-  _impl_.additional_info_.Destroy();
   if (this != internal_default_instance()) delete _impl_.position_;
+  if (this != internal_default_instance()) delete _impl_.scale_;
+  if (this != internal_default_instance()) delete _impl_.rotation_;
 }
 
-void ActorInfo::SetCachedSize(int size) const {
+void TransformData::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void ActorInfo::Clear() {
-// @@protoc_insertion_point(message_clear_start:Protocol.ActorInfo)
+void TransformData::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.TransformData)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
-  _impl_.additional_info_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && _impl_.position_ != nullptr) {
     delete _impl_.position_;
   }
   _impl_.position_ = nullptr;
-  ::memset(&_impl_.actor_id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.status_) -
-      reinterpret_cast<char*>(&_impl_.actor_id_)) + sizeof(_impl_.status_));
+  if (GetArenaForAllocation() == nullptr && _impl_.scale_ != nullptr) {
+    delete _impl_.scale_;
+  }
+  _impl_.scale_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.rotation_ != nullptr) {
+    delete _impl_.rotation_;
+  }
+  _impl_.rotation_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* ActorInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* TransformData::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // uint64 actor_id = 1;
+      // .Protocol.Vector3 position = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.actor_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string name = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "Protocol.ActorInfo.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .Protocol.ActorRole role = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_role(static_cast<::Protocol::ActorRole>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      // .Protocol.Vector3 position = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_position(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .Protocol.ActorStatus status = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+      // .Protocol.Vector3 scale = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_scale(), ptr);
           CHK_(ptr);
-          _internal_set_status(static_cast<::Protocol::ActorStatus>(val));
         } else
           goto handle_unusual;
         continue;
-      // string additional_info = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
-          auto str = _internal_mutable_additional_info();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+      // .Protocol.Vector3 rotation = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_rotation(), ptr);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "Protocol.ActorInfo.additional_info"));
         } else
           goto handle_unusual;
         continue;
@@ -591,186 +540,126 @@ failure:
 #undef CHK_
 }
 
-uint8_t* ActorInfo::_InternalSerialize(
+uint8_t* TransformData::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Protocol.ActorInfo)
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.TransformData)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint64 actor_id = 1;
-  if (this->_internal_actor_id() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_actor_id(), target);
-  }
-
-  // string name = 2;
-  if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "Protocol.ActorInfo.name");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_name(), target);
-  }
-
-  // .Protocol.ActorRole role = 3;
-  if (this->_internal_role() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      3, this->_internal_role(), target);
-  }
-
-  // .Protocol.Vector3 position = 4;
+  // .Protocol.Vector3 position = 1;
   if (this->_internal_has_position()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(4, _Internal::position(this),
+      InternalWriteMessage(1, _Internal::position(this),
         _Internal::position(this).GetCachedSize(), target, stream);
   }
 
-  // .Protocol.ActorStatus status = 5;
-  if (this->_internal_status() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      5, this->_internal_status(), target);
+  // .Protocol.Vector3 scale = 2;
+  if (this->_internal_has_scale()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::scale(this),
+        _Internal::scale(this).GetCachedSize(), target, stream);
   }
 
-  // string additional_info = 6;
-  if (!this->_internal_additional_info().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_additional_info().data(), static_cast<int>(this->_internal_additional_info().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "Protocol.ActorInfo.additional_info");
-    target = stream->WriteStringMaybeAliased(
-        6, this->_internal_additional_info(), target);
+  // .Protocol.Vector3 rotation = 3;
+  if (this->_internal_has_rotation()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::rotation(this),
+        _Internal::rotation(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:Protocol.ActorInfo)
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.TransformData)
   return target;
 }
 
-size_t ActorInfo::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Protocol.ActorInfo)
+size_t TransformData::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.TransformData)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string name = 2;
-  if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
-  }
-
-  // string additional_info = 6;
-  if (!this->_internal_additional_info().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_additional_info());
-  }
-
-  // .Protocol.Vector3 position = 4;
+  // .Protocol.Vector3 position = 1;
   if (this->_internal_has_position()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.position_);
   }
 
-  // uint64 actor_id = 1;
-  if (this->_internal_actor_id() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_actor_id());
+  // .Protocol.Vector3 scale = 2;
+  if (this->_internal_has_scale()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.scale_);
   }
 
-  // .Protocol.ActorRole role = 3;
-  if (this->_internal_role() != 0) {
+  // .Protocol.Vector3 rotation = 3;
+  if (this->_internal_has_rotation()) {
     total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_role());
-  }
-
-  // .Protocol.ActorStatus status = 5;
-  if (this->_internal_status() != 0) {
-    total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_status());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.rotation_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ActorInfo::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TransformData::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    ActorInfo::MergeImpl
+    TransformData::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ActorInfo::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TransformData::GetClassData() const { return &_class_data_; }
 
 
-void ActorInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ActorInfo*>(&to_msg);
-  auto& from = static_cast<const ActorInfo&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.ActorInfo)
+void TransformData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<TransformData*>(&to_msg);
+  auto& from = static_cast<const TransformData&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.TransformData)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
-  }
-  if (!from._internal_additional_info().empty()) {
-    _this->_internal_set_additional_info(from._internal_additional_info());
-  }
   if (from._internal_has_position()) {
     _this->_internal_mutable_position()->::Protocol::Vector3::MergeFrom(
         from._internal_position());
   }
-  if (from._internal_actor_id() != 0) {
-    _this->_internal_set_actor_id(from._internal_actor_id());
+  if (from._internal_has_scale()) {
+    _this->_internal_mutable_scale()->::Protocol::Vector3::MergeFrom(
+        from._internal_scale());
   }
-  if (from._internal_role() != 0) {
-    _this->_internal_set_role(from._internal_role());
-  }
-  if (from._internal_status() != 0) {
-    _this->_internal_set_status(from._internal_status());
+  if (from._internal_has_rotation()) {
+    _this->_internal_mutable_rotation()->::Protocol::Vector3::MergeFrom(
+        from._internal_rotation());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ActorInfo::CopyFrom(const ActorInfo& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.ActorInfo)
+void TransformData::CopyFrom(const TransformData& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.TransformData)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool ActorInfo::IsInitialized() const {
+bool TransformData::IsInitialized() const {
   return true;
 }
 
-void ActorInfo::InternalSwap(ActorInfo* other) {
+void TransformData::InternalSwap(TransformData* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.additional_info_, lhs_arena,
-      &other->_impl_.additional_info_, rhs_arena
-  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ActorInfo, _impl_.status_)
-      + sizeof(ActorInfo::_impl_.status_)
-      - PROTOBUF_FIELD_OFFSET(ActorInfo, _impl_.position_)>(
+      PROTOBUF_FIELD_OFFSET(TransformData, _impl_.rotation_)
+      + sizeof(TransformData::_impl_.rotation_)
+      - PROTOBUF_FIELD_OFFSET(TransformData, _impl_.position_)>(
           reinterpret_cast<char*>(&_impl_.position_),
           reinterpret_cast<char*>(&other->_impl_.position_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata ActorInfo::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata TransformData::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Struct_2eproto_getter, &descriptor_table_Struct_2eproto_once,
       file_level_metadata_Struct_2eproto[1]);
@@ -783,9 +672,9 @@ template<> PROTOBUF_NOINLINE ::Protocol::Vector3*
 Arena::CreateMaybeMessage< ::Protocol::Vector3 >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Protocol::Vector3 >(arena);
 }
-template<> PROTOBUF_NOINLINE ::Protocol::ActorInfo*
-Arena::CreateMaybeMessage< ::Protocol::ActorInfo >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::Protocol::ActorInfo >(arena);
+template<> PROTOBUF_NOINLINE ::Protocol::TransformData*
+Arena::CreateMaybeMessage< ::Protocol::TransformData >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::TransformData >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

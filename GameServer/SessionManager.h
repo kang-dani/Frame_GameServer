@@ -1,5 +1,9 @@
 #pragma once
 
+#include <set>
+#include <memory>
+#include <shared_mutex>
+
 class ClientSession;
 
 class SessionManager
@@ -17,11 +21,11 @@ public:
 	SessionManager(const SessionManager&) = delete;
 	SessionManager& operator=(const SessionManager&) = delete;
 private:
-	shared_mutex rwLock;
-	set<shared_ptr<ClientSession>> sessions;
+	std::shared_mutex rwLock;
+	std::set<std::shared_ptr<ClientSession>> sessions;
 public:
-	void Add(shared_ptr<ClientSession> session);
-	void Remove(shared_ptr<ClientSession> session);
-	void Broadcast(shared_ptr<class SendBuffer> buffer);
+	void Add(std::shared_ptr<ClientSession> session);
+	void Remove(std::shared_ptr<ClientSession> session);
+	void Broadcast(std::shared_ptr<class SendBuffer> buffer);
 };
 

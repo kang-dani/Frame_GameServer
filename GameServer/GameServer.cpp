@@ -1,7 +1,6 @@
-#pragma once
 #include "pch.h"
-#include <ServerService.h>
-#include <SendBufferManager.h>
+#include "../ServerCore/ServerService.h"
+#include "../ServerCore/SendBufferManager.h"
 
 #include "ClientSession.h"
 #include "SessionManager.h"

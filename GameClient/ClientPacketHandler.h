@@ -30,11 +30,8 @@ public:
 
     // 패킷 수신 핸들러 함수
     static bool Handle_LoginResponse(std::shared_ptr<PacketSession>& session, Protocol::LoginResponse& packet);
-    static bool Handle_EnterGameResponse(std::shared_ptr<PacketSession>& session, Protocol::EnterGameResponse& packet);
-    static bool Handle_PlayerMoveResponse(std::shared_ptr<PacketSession>& session, Protocol::PlayerMoveResponse& packet);
     static bool Handle_ChatResponse(std::shared_ptr<PacketSession>& session, Protocol::ChatResponse& packet);
-    static bool Handle_ActionResponse(std::shared_ptr<PacketSession>& session, Protocol::ActionResponse& packet);
-    static bool Handle_WorldStateUpdate(std::shared_ptr<PacketSession>& session, Protocol::ActionResponse& packet);
+    static bool Handle_InitWorldStateResponse(std::shared_ptr<PacketSession>& session, Protocol::InitWorldStateRequest& packet);
 
 public:
     // 클라이언트 → 서버 패킷 전송 (Send)
@@ -43,25 +40,11 @@ public:
         return MakeSendBuffer(packet, PacketID::LOGIN_REQUEST);
     }
 
-    static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::EnterGameRequest& packet)
-    {
-        return MakeSendBuffer(packet, PacketID::ENTER_GAME_REQUEST);
-    }
-
-    static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::PlayerMoveRequest& packet)
-    {
-        return MakeSendBuffer(packet, PacketID::PLAYER_MOVE_REQUEST);
-    }
-
     static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::ChatRequest& packet)
     {
         return MakeSendBuffer(packet, PacketID::CHAT_REQUEST);
     }
 
-    static shared_ptr<SendBuffer> MakeSendBuffer(Protocol::ActionRequest& packet)
-    {
-        return MakeSendBuffer(packet, PacketID::ACTION_REQUEST);
-    }
 public:
     template<typename T>
     static shared_ptr<SendBuffer> MakeSendBuffer(T& packet, PacketID packetId)

@@ -1,17 +1,23 @@
-#pragma once
+ï»¿#pragma once
+#include "../GameServer/RoomManager.h"
 #include "Service.h"
+#include <unordered_map>
+#include <mutex>
+#include <cmath>
 
 class Listener;
 
-class ServerService	: public Service
-{
-private:
-	//½º¸¶Æ® Æ÷ÀÎÅÍ·Î °ü¸®
-	shared_ptr<Listener> listener = nullptr;
+class ServerService : public Service {
 public:
-	ServerService(wstring ip, uint16 port, SessionFactory factory);
-	virtual ~ServerService();
-public:
-	virtual bool Start() override;
-};
 
+	ServerService(std::wstring ip, uint16_t port, SessionFactory factory);
+	virtual ~ServerService() = default;
+	bool Start() override;
+	bool Start() override;
+
+	void ServerService::Tick() {
+		for (auto& room : RoomManager::Get().ListRooms()) {
+			room->Tick(); // ë‚´ë¶€ì—ì„œ worldState + delta ì²˜ë¦¬
+		}
+	}
+};

@@ -1,5 +1,6 @@
 #pragma once
 #include <functional>
+#include "PacketSession.h"
 
 class IocpCore;
 class Session;
@@ -46,5 +47,7 @@ public:
 public:
 	virtual bool Start() abstract;
 	bool ObserveIO(DWORD time = INFINITE);
+
+	virtual void OnClientJoined(std::shared_ptr<PacketSession> session) = 0;
 };
 

@@ -1,77 +1,102 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Main">
-      <UniqueIdentifier>{a53988fc-b405-4045-89af-ac404b34c121}</UniqueIdentifier>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="PCH">
-      <UniqueIdentifier>{6fc19bdf-80bd-415e-ab3d-229fe7715062}</UniqueIdentifier>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Protobuf">
-      <UniqueIdentifier>{3d18b345-8e8d-4d53-b4c6-9a4f62982f99}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packet">
-      <UniqueIdentifier>{e2049c5b-53db-490c-ae98-fdbdcbeae918}</UniqueIdentifier>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ClientSession.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameRoom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="GameServer.cpp">
-      <Filter>Main</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>PCH</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ClientSession.cpp">
-      <Filter>Packet</Filter>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SessionManager.cpp">
-      <Filter>Packet</Filter>
+    <ClCompile Include="PlayerIdGenerator.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Protocol.pb.cc">
-      <Filter>Protobuf</Filter>
+    <ClCompile Include="PlayerLoginManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ServerPacketHandler.cpp">
-      <Filter>Packet</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Struct.pb.cc">
-      <Filter>Protobuf</Filter>
+    <ClCompile Include="SessionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldState.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Enum.pb.cc">
-      <Filter>Protobuf</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Struct.pb.cc">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
-      <Filter>PCH</Filter>
-    </ClInclude>
     <ClInclude Include="ClientSession.h">
-      <Filter>Packet</Filter>
-    </ClInclude>
-    <ClInclude Include="SessionManager.h">
-      <Filter>Packet</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol.pb.h">
-      <Filter>Protobuf</Filter>
-    </ClInclude>
-    <ClInclude Include="ServerPacketHandler.h">
-      <Filter>Packet</Filter>
-    </ClInclude>
-    <ClInclude Include="Struct.pb.h">
-      <Filter>Protobuf</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Enum.pb.h">
-      <Filter>Protobuf</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Protoc\bin\Protocol.proto">
-      <Filter>Protobuf</Filter>
-    </None>
-    <None Include="..\Protoc\bin\Struct.proto">
-      <Filter>Protobuf</Filter>
-    </None>
-    <None Include="..\Protoc\bin\Enum.proto">
-      <Filter>Protobuf</Filter>
-    </None>
+    <ClInclude Include="GameRoom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerIdGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLoginManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerPacketHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SessionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Struct.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

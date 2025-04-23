@@ -10,11 +10,11 @@ class ClientSession;
 class Player : public std::enable_shared_from_this<Player>
 {
 public:
-	uint32 id;
-	std::string name;
+	int id;
+	std::string nickname;
 
 public:
-	weak_ptr<ClientSession> session;
+	std::weak_ptr<ClientSession> session;
 	
 public:
 	Player(){}

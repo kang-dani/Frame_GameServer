@@ -25,16 +25,15 @@ namespace Protocol {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CgxTdHJ1Y3QucHJvdG8SCFByb3RvY29sGgpFbnVtLnByb3RvIioKB1ZlY3Rv",
-            "cjMSCQoBeBgBIAEoAhIJCgF5GAIgASgCEgkKAXoYAyABKAIiswEKCUFjdG9y",
-            "SW5mbxIQCghhY3Rvcl9pZBgBIAEoBBIMCgRuYW1lGAIgASgJEiEKBHJvbGUY",
-            "AyABKA4yEy5Qcm90b2NvbC5BY3RvclJvbGUSIwoIcG9zaXRpb24YBCABKAsy",
-            "ES5Qcm90b2NvbC5WZWN0b3IzEiUKBnN0YXR1cxgFIAEoDjIVLlByb3RvY29s",
-            "LkFjdG9yU3RhdHVzEhcKD2FkZGl0aW9uYWxfaW5mbxgGIAEoCWIGcHJvdG8z"));
+            "cjMSCQoBeBgBIAEoAhIJCgF5GAIgASgCEgkKAXoYAyABKAIiewoNVHJhbnNm",
+            "b3JtRGF0YRIjCghwb3NpdGlvbhgBIAEoCzIRLlByb3RvY29sLlZlY3RvcjMS",
+            "IAoFc2NhbGUYAiABKAsyES5Qcm90b2NvbC5WZWN0b3IzEiMKCHJvdGF0aW9u",
+            "GAMgASgLMhEuUHJvdG9jb2wuVmVjdG9yM2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Protocol.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.Vector3), global::Protocol.Vector3.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.ActorInfo), global::Protocol.ActorInfo.Parser, new[]{ "ActorId", "Name", "Role", "Position", "Status", "AdditionalInfo" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.TransformData), global::Protocol.TransformData.Parser, new[]{ "Position", "Scale", "Rotation" }, null, null, null, null)
           }));
     }
     #endregion
@@ -304,19 +303,16 @@ namespace Protocol {
 
   }
 
-  /// <summary>
-  /// 모든 구성원 (Actor)의 기본 정보
-  /// </summary>
-  public sealed partial class ActorInfo : pb::IMessage<ActorInfo>
+  public sealed partial class TransformData : pb::IMessage<TransformData>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<ActorInfo> _parser = new pb::MessageParser<ActorInfo>(() => new ActorInfo());
+    private static readonly pb::MessageParser<TransformData> _parser = new pb::MessageParser<TransformData>(() => new TransformData());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<ActorInfo> Parser { get { return _parser; } }
+    public static pb::MessageParser<TransformData> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -332,7 +328,7 @@ namespace Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ActorInfo() {
+    public TransformData() {
       OnConstruction();
     }
 
@@ -340,73 +336,22 @@ namespace Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ActorInfo(ActorInfo other) : this() {
-      actorId_ = other.actorId_;
-      name_ = other.name_;
-      role_ = other.role_;
+    public TransformData(TransformData other) : this() {
       position_ = other.position_ != null ? other.position_.Clone() : null;
-      status_ = other.status_;
-      additionalInfo_ = other.additionalInfo_;
+      scale_ = other.scale_ != null ? other.scale_.Clone() : null;
+      rotation_ = other.rotation_ != null ? other.rotation_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ActorInfo Clone() {
-      return new ActorInfo(this);
-    }
-
-    /// <summary>Field number for the "actor_id" field.</summary>
-    public const int ActorIdFieldNumber = 1;
-    private ulong actorId_;
-    /// <summary>
-    /// Actor의 고유 ID
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ulong ActorId {
-      get { return actorId_; }
-      set {
-        actorId_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 2;
-    private string name_ = "";
-    /// <summary>
-    /// Actor의 이름
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Name {
-      get { return name_; }
-      set {
-        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "role" field.</summary>
-    public const int RoleFieldNumber = 3;
-    private global::Protocol.ActorRole role_ = global::Protocol.ActorRole.Default;
-    /// <summary>
-    /// 현재 역할 (PLAYER, AI, ENVIRONMENT 등)
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Protocol.ActorRole Role {
-      get { return role_; }
-      set {
-        role_ = value;
-      }
+    public TransformData Clone() {
+      return new TransformData(this);
     }
 
     /// <summary>Field number for the "position" field.</summary>
-    public const int PositionFieldNumber = 4;
+    public const int PositionFieldNumber = 1;
     private global::Protocol.Vector3 position_;
-    /// <summary>
-    /// Actor의 위치
-    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Protocol.Vector3 Position {
@@ -416,57 +361,51 @@ namespace Protocol {
       }
     }
 
-    /// <summary>Field number for the "status" field.</summary>
-    public const int StatusFieldNumber = 5;
-    private global::Protocol.ActorStatus status_ = global::Protocol.ActorStatus.Idle;
-    /// <summary>
-    /// Actor의 상태 (IDLE, MOVING 등)
-    /// </summary>
+    /// <summary>Field number for the "scale" field.</summary>
+    public const int ScaleFieldNumber = 2;
+    private global::Protocol.Vector3 scale_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Protocol.ActorStatus Status {
-      get { return status_; }
+    public global::Protocol.Vector3 Scale {
+      get { return scale_; }
       set {
-        status_ = value;
+        scale_ = value;
       }
     }
 
-    /// <summary>Field number for the "additional_info" field.</summary>
-    public const int AdditionalInfoFieldNumber = 6;
-    private string additionalInfo_ = "";
+    /// <summary>Field number for the "rotation" field.</summary>
+    public const int RotationFieldNumber = 3;
+    private global::Protocol.Vector3 rotation_;
     /// <summary>
-    /// 부가 정보 (예: 스킬, 행동 등)
+    /// 오일러각 (x, y z)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string AdditionalInfo {
-      get { return additionalInfo_; }
+    public global::Protocol.Vector3 Rotation {
+      get { return rotation_; }
       set {
-        additionalInfo_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        rotation_ = value;
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as ActorInfo);
+      return Equals(other as TransformData);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(ActorInfo other) {
+    public bool Equals(TransformData other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ActorId != other.ActorId) return false;
-      if (Name != other.Name) return false;
-      if (Role != other.Role) return false;
       if (!object.Equals(Position, other.Position)) return false;
-      if (Status != other.Status) return false;
-      if (AdditionalInfo != other.AdditionalInfo) return false;
+      if (!object.Equals(Scale, other.Scale)) return false;
+      if (!object.Equals(Rotation, other.Rotation)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -474,12 +413,9 @@ namespace Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (ActorId != 0UL) hash ^= ActorId.GetHashCode();
-      if (Name.Length != 0) hash ^= Name.GetHashCode();
-      if (Role != global::Protocol.ActorRole.Default) hash ^= Role.GetHashCode();
       if (position_ != null) hash ^= Position.GetHashCode();
-      if (Status != global::Protocol.ActorStatus.Idle) hash ^= Status.GetHashCode();
-      if (AdditionalInfo.Length != 0) hash ^= AdditionalInfo.GetHashCode();
+      if (scale_ != null) hash ^= Scale.GetHashCode();
+      if (rotation_ != null) hash ^= Rotation.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -498,29 +434,17 @@ namespace Protocol {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ActorId != 0UL) {
-        output.WriteRawTag(8);
-        output.WriteUInt64(ActorId);
-      }
-      if (Name.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Name);
-      }
-      if (Role != global::Protocol.ActorRole.Default) {
-        output.WriteRawTag(24);
-        output.WriteEnum((int) Role);
-      }
       if (position_ != null) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(10);
         output.WriteMessage(Position);
       }
-      if (Status != global::Protocol.ActorStatus.Idle) {
-        output.WriteRawTag(40);
-        output.WriteEnum((int) Status);
+      if (scale_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Scale);
       }
-      if (AdditionalInfo.Length != 0) {
-        output.WriteRawTag(50);
-        output.WriteString(AdditionalInfo);
+      if (rotation_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Rotation);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -532,29 +456,17 @@ namespace Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ActorId != 0UL) {
-        output.WriteRawTag(8);
-        output.WriteUInt64(ActorId);
-      }
-      if (Name.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Name);
-      }
-      if (Role != global::Protocol.ActorRole.Default) {
-        output.WriteRawTag(24);
-        output.WriteEnum((int) Role);
-      }
       if (position_ != null) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(10);
         output.WriteMessage(Position);
       }
-      if (Status != global::Protocol.ActorStatus.Idle) {
-        output.WriteRawTag(40);
-        output.WriteEnum((int) Status);
+      if (scale_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Scale);
       }
-      if (AdditionalInfo.Length != 0) {
-        output.WriteRawTag(50);
-        output.WriteString(AdditionalInfo);
+      if (rotation_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Rotation);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -566,23 +478,14 @@ namespace Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (ActorId != 0UL) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ActorId);
-      }
-      if (Name.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
-      }
-      if (Role != global::Protocol.ActorRole.Default) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Role);
-      }
       if (position_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Position);
       }
-      if (Status != global::Protocol.ActorStatus.Idle) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Status);
+      if (scale_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Scale);
       }
-      if (AdditionalInfo.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(AdditionalInfo);
+      if (rotation_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Rotation);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -592,18 +495,9 @@ namespace Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(ActorInfo other) {
+    public void MergeFrom(TransformData other) {
       if (other == null) {
         return;
-      }
-      if (other.ActorId != 0UL) {
-        ActorId = other.ActorId;
-      }
-      if (other.Name.Length != 0) {
-        Name = other.Name;
-      }
-      if (other.Role != global::Protocol.ActorRole.Default) {
-        Role = other.Role;
       }
       if (other.position_ != null) {
         if (position_ == null) {
@@ -611,11 +505,17 @@ namespace Protocol {
         }
         Position.MergeFrom(other.Position);
       }
-      if (other.Status != global::Protocol.ActorStatus.Idle) {
-        Status = other.Status;
+      if (other.scale_ != null) {
+        if (scale_ == null) {
+          Scale = new global::Protocol.Vector3();
+        }
+        Scale.MergeFrom(other.Scale);
       }
-      if (other.AdditionalInfo.Length != 0) {
-        AdditionalInfo = other.AdditionalInfo;
+      if (other.rotation_ != null) {
+        if (rotation_ == null) {
+          Rotation = new global::Protocol.Vector3();
+        }
+        Rotation.MergeFrom(other.Rotation);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -632,31 +532,25 @@ namespace Protocol {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            ActorId = input.ReadUInt64();
-            break;
-          }
-          case 18: {
-            Name = input.ReadString();
-            break;
-          }
-          case 24: {
-            Role = (global::Protocol.ActorRole) input.ReadEnum();
-            break;
-          }
-          case 34: {
+          case 10: {
             if (position_ == null) {
               Position = new global::Protocol.Vector3();
             }
             input.ReadMessage(Position);
             break;
           }
-          case 40: {
-            Status = (global::Protocol.ActorStatus) input.ReadEnum();
+          case 18: {
+            if (scale_ == null) {
+              Scale = new global::Protocol.Vector3();
+            }
+            input.ReadMessage(Scale);
             break;
           }
-          case 50: {
-            AdditionalInfo = input.ReadString();
+          case 26: {
+            if (rotation_ == null) {
+              Rotation = new global::Protocol.Vector3();
+            }
+            input.ReadMessage(Rotation);
             break;
           }
         }
@@ -674,31 +568,25 @@ namespace Protocol {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8: {
-            ActorId = input.ReadUInt64();
-            break;
-          }
-          case 18: {
-            Name = input.ReadString();
-            break;
-          }
-          case 24: {
-            Role = (global::Protocol.ActorRole) input.ReadEnum();
-            break;
-          }
-          case 34: {
+          case 10: {
             if (position_ == null) {
               Position = new global::Protocol.Vector3();
             }
             input.ReadMessage(Position);
             break;
           }
-          case 40: {
-            Status = (global::Protocol.ActorStatus) input.ReadEnum();
+          case 18: {
+            if (scale_ == null) {
+              Scale = new global::Protocol.Vector3();
+            }
+            input.ReadMessage(Scale);
             break;
           }
-          case 50: {
-            AdditionalInfo = input.ReadString();
+          case 26: {
+            if (rotation_ == null) {
+              Rotation = new global::Protocol.Vector3();
+            }
+            input.ReadMessage(Rotation);
             break;
           }
         }

@@ -22,24 +22,30 @@ namespace _pbi = _pb::internal;
 
 namespace Protocol {
 }  // namespace Protocol
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_Enum_2eproto[3];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_Enum_2eproto[6];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_Enum_2eproto = nullptr;
 const uint32_t TableStruct_Enum_2eproto::offsets[1] = {};
 static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 
 const char descriptor_table_protodef_Enum_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\nEnum.proto\022\010Protocol*M\n\013ActorStatus\022\010\n"
-  "\004IDLE\020\000\022\n\n\006MOVING\020\001\022\017\n\013INTERACTING\020\002\022\010\n\004"
-  "DEAD\020\003\022\r\n\tATTACKING\020\004*=\n\tActorRole\022\013\n\007DE"
-  "FAULT\020\000\022\n\n\006PLAYER\020\001\022\006\n\002AI\020\002\022\017\n\013ENVIRONME"
-  "NT\020\003*R\n\tErrorCode\022\010\n\004NONE\020\000\022\027\n\023INVALID_C"
-  "REDENTIALS\020\001\022\017\n\013SERVER_FULL\020\002\022\021\n\rUNKNOWN"
-  "_ERROR\020cb\006proto3"
+  "\n\nEnum.proto\022\010Protocol*W\n\017PlayerStateTyp"
+  "e\022\017\n\013PLAYER_IDLE\020\000\022\017\n\013PLAYER_MOVE\020\001\022\017\n\013P"
+  "LAYER_DEAD\020\002\022\021\n\rPLAYER_ESCAPE\020\003*>\n\004Role\022"
+  "\024\n\020ROLE_UNSPECIFIED\020\000\022\r\n\tROLE_BOSS\020\001\022\021\n\r"
+  "ROLE_SURVIVOR\020\002*E\n\nEscapeType\022\017\n\013ESCAPE_"
+  "DEAD\020\000\022\024\n\020ESCAPE_EXIT_DOOR\020\001\022\020\n\014ESCAPE_H"
+  "ATCH\020\002*j\n\tErrorCode\022\016\n\nERROR_NONE\020\000\022\035\n\031E"
+  "RROR_INVALID_CREDENTIALS\020\001\022\025\n\021ERROR_SERV"
+  "ER_FULL\020\002\022\027\n\023ERROR_UNKNOWN_ERROR\020c*0\n\tAc"
+  "torRole\022\n\n\006PLAYER\020\000\022\006\n\002AI\020\001\022\017\n\013ENVIRONME"
+  "NT\020\002*L\n\010BossType\022\r\n\tBOSS_NONE\020\000\022\017\n\013BOSS_"
+  "PEANUT\020\001\022\016\n\nBOSS_VOMIT\020\002\022\020\n\014BOSS_PROTEIN"
+  "\020\003b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_Enum_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Enum_2eproto = {
-    false, false, 256, descriptor_table_protodef_Enum_2eproto,
+    false, false, 490, descriptor_table_protodef_Enum_2eproto,
     "Enum.proto",
     &descriptor_table_Enum_2eproto_once, nullptr, 0, 0,
     schemas, file_default_instances, TableStruct_Enum_2eproto::offsets,
@@ -53,33 +59,46 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_Enum_2ep
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_Enum_2eproto(&descriptor_table_Enum_2eproto);
 namespace Protocol {
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ActorStatus_descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PlayerStateType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_Enum_2eproto);
   return file_level_enum_descriptors_Enum_2eproto[0];
 }
-bool ActorStatus_IsValid(int value) {
+bool PlayerStateType_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
     case 2:
     case 3:
-    case 4:
       return true;
     default:
       return false;
   }
 }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ActorRole_descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Role_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_Enum_2eproto);
   return file_level_enum_descriptors_Enum_2eproto[1];
 }
-bool ActorRole_IsValid(int value) {
+bool Role_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
     case 2:
-    case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EscapeType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_Enum_2eproto);
+  return file_level_enum_descriptors_Enum_2eproto[2];
+}
+bool EscapeType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
       return true;
     default:
       return false;
@@ -88,7 +107,7 @@ bool ActorRole_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ErrorCode_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_Enum_2eproto);
-  return file_level_enum_descriptors_Enum_2eproto[2];
+  return file_level_enum_descriptors_Enum_2eproto[3];
 }
 bool ErrorCode_IsValid(int value) {
   switch (value) {
@@ -96,6 +115,37 @@ bool ErrorCode_IsValid(int value) {
     case 1:
     case 2:
     case 99:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ActorRole_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_Enum_2eproto);
+  return file_level_enum_descriptors_Enum_2eproto[4];
+}
+bool ActorRole_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* BossType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_Enum_2eproto);
+  return file_level_enum_descriptors_Enum_2eproto[5];
+}
+bool BossType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
       return true;
     default:
       return false;

@@ -1,6 +1,6 @@
 #pragma once
 
-enum class EventType : uint8
+enum class EventType : int
 {
 	CONNECT,
 	DISCONNECT,
@@ -17,7 +17,7 @@ class IocpEvent : public OVERLAPPED
 {
 public:
 	EventType eventType;
-	shared_ptr<IocpObj> owner;
+	std::shared_ptr<IocpObj> owner;
 public:
 	IocpEvent(EventType type);
 public:
@@ -28,7 +28,7 @@ public:
 class AcceptEvent : public IocpEvent
 {
 public:
-	shared_ptr<Session> session;
+	std::shared_ptr<Session> session;
 public:
 	AcceptEvent() : IocpEvent(EventType::ACCEPT) {}
 };
@@ -61,7 +61,7 @@ class SendEvent : public IocpEvent
 public:
 	//sendBuffer class·Î º¯°æ
 	//vector<BYTE> sendBuffer;
-	vector<shared_ptr<SendBuffer>> sendBuffers;
+	std::vector<std::shared_ptr<SendBuffer>> sendBuffers;
 public:
 	SendEvent() : IocpEvent(EventType::SEND) {}
 };

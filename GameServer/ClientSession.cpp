@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "ClientSession.h"
-#include "SessionManager.h"
 
-#include "ServerPacketHandler.h"
 
 void ClientSession::OnConnected()
 {
@@ -24,4 +22,10 @@ void ClientSession::OnSend(int len)
 void ClientSession::OnDisconnected()
 {
     SessionManager::Get().Remove(GetClientSession());
+    auto player = GetPlayer();
+    if (player)
+    {
+        RoomManager::Get().RemovePlayerFromRoom(player->id);
+        PlayerLoginManager::GetInstance().RemovePlayer(player->id); 
+    }
 }

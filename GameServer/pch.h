@@ -9,4 +9,4 @@
 #pragma comment(lib, "Protobuf\\Release\\libprotobuf.lib")  //Debug 모드일때
 #endif // _DEBUG
 
-#include <CorePch.h>
+#include "../ServerCore/CorePch.h"

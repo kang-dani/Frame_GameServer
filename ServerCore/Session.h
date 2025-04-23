@@ -2,6 +2,7 @@
 #include "IocpObj.h"
 #include "RecvBuffer.h"
 #include "SendBuffer.h"
+#include <atomic>
 
 class Service;
 

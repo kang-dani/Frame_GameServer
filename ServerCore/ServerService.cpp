@@ -15,7 +15,6 @@ ServerService::~ServerService()
    // }
 
 }
-
 bool ServerService::Start()
 {
     //listener = new Listener;

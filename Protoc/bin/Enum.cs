@@ -24,66 +24,51 @@ namespace Protocol {
     static EnumReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgpFbnVtLnByb3RvEghQcm90b2NvbCpNCgtBY3RvclN0YXR1cxIICgRJRExF",
-            "EAASCgoGTU9WSU5HEAESDwoLSU5URVJBQ1RJTkcQAhIICgRERUFEEAMSDQoJ",
-            "QVRUQUNLSU5HEAQqPQoJQWN0b3JSb2xlEgsKB0RFRkFVTFQQABIKCgZQTEFZ",
-            "RVIQARIGCgJBSRACEg8KC0VOVklST05NRU5UEAMqUgoJRXJyb3JDb2RlEggK",
-            "BE5PTkUQABIXChNJTlZBTElEX0NSRURFTlRJQUxTEAESDwoLU0VSVkVSX0ZV",
-            "TEwQAhIRCg1VTktOT1dOX0VSUk9SEGNiBnByb3RvMw=="));
+            "CgpFbnVtLnByb3RvEghQcm90b2NvbCpXCg9QbGF5ZXJTdGF0ZVR5cGUSDwoL",
+            "UExBWUVSX0lETEUQABIPCgtQTEFZRVJfTU9WRRABEg8KC1BMQVlFUl9ERUFE",
+            "EAISEQoNUExBWUVSX0VTQ0FQRRADKj4KBFJvbGUSFAoQUk9MRV9VTlNQRUNJ",
+            "RklFRBAAEg0KCVJPTEVfQk9TUxABEhEKDVJPTEVfU1VSVklWT1IQAipFCgpF",
+            "c2NhcGVUeXBlEg8KC0VTQ0FQRV9ERUFEEAASFAoQRVNDQVBFX0VYSVRfRE9P",
+            "UhABEhAKDEVTQ0FQRV9IQVRDSBACKmoKCUVycm9yQ29kZRIOCgpFUlJPUl9O",
+            "T05FEAASHQoZRVJST1JfSU5WQUxJRF9DUkVERU5USUFMUxABEhUKEUVSUk9S",
+            "X1NFUlZFUl9GVUxMEAISFwoTRVJST1JfVU5LTk9XTl9FUlJPUhBjKjAKCUFj",
+            "dG9yUm9sZRIKCgZQTEFZRVIQABIGCgJBSRABEg8KC0VOVklST05NRU5UEAIq",
+            "TAoIQm9zc1R5cGUSDQoJQk9TU19OT05FEAASDwoLQk9TU19QRUFOVVQQARIO",
+            "CgpCT1NTX1ZPTUlUEAISEAoMQk9TU19QUk9URUlOEANiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Protocol.ActorStatus), typeof(global::Protocol.ActorRole), typeof(global::Protocol.ErrorCode), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Protocol.PlayerStateType), typeof(global::Protocol.Role), typeof(global::Protocol.EscapeType), typeof(global::Protocol.ErrorCode), typeof(global::Protocol.ActorRole), typeof(global::Protocol.BossType), }, null, null));
     }
     #endregion
 
   }
   #region Enums
-  /// <summary>
-  /// Actor의 상태
-  /// </summary>
-  public enum ActorStatus {
-    /// <summary>
-    /// 대기 중
-    /// </summary>
-    [pbr::OriginalName("IDLE")] Idle = 0,
-    /// <summary>
-    /// 이동 중
-    /// </summary>
-    [pbr::OriginalName("MOVING")] Moving = 1,
-    /// <summary>
-    /// 상호작용 중
-    /// </summary>
-    [pbr::OriginalName("INTERACTING")] Interacting = 2,
-    /// <summary>
-    /// 죽음
-    /// </summary>
-    [pbr::OriginalName("DEAD")] Dead = 3,
-    /// <summary>
-    /// 공격 중
-    /// </summary>
-    [pbr::OriginalName("ATTACKING")] Attacking = 4,
+  public enum PlayerStateType {
+    [pbr::OriginalName("PLAYER_IDLE")] PlayerIdle = 0,
+    [pbr::OriginalName("PLAYER_MOVE")] PlayerMove = 1,
+    [pbr::OriginalName("PLAYER_DEAD")] PlayerDead = 2,
+    [pbr::OriginalName("PLAYER_ESCAPE")] PlayerEscape = 3,
   }
 
-  /// <summary>
-  /// Actor의 상태를 확장하기 위한 상태 타입
-  /// </summary>
-  public enum ActorRole {
+  public enum Role {
+    [pbr::OriginalName("ROLE_UNSPECIFIED")] Unspecified = 0,
+    [pbr::OriginalName("ROLE_BOSS")] Boss = 1,
+    [pbr::OriginalName("ROLE_SURVIVOR")] Survivor = 2,
+  }
+
+  public enum EscapeType {
     /// <summary>
-    /// 기본 역할
+    /// 탈출 못함
     /// </summary>
-    [pbr::OriginalName("DEFAULT")] Default = 0,
+    [pbr::OriginalName("ESCAPE_DEAD")] EscapeDead = 0,
     /// <summary>
-    /// 사용자 조작 Actor
+    /// 탈출구 탈출
     /// </summary>
-    [pbr::OriginalName("PLAYER")] Player = 1,
+    [pbr::OriginalName("ESCAPE_EXIT_DOOR")] EscapeExitDoor = 1,
     /// <summary>
-    /// AI로 동작
+    /// 개구멍 탈출
     /// </summary>
-    [pbr::OriginalName("AI")] Ai = 2,
-    /// <summary>
-    /// 환경적 Actor (예: 나무, 바위)
-    /// </summary>
-    [pbr::OriginalName("ENVIRONMENT")] Environment = 3,
+    [pbr::OriginalName("ESCAPE_HATCH")] EscapeHatch = 2,
   }
 
   /// <summary>
@@ -93,19 +78,50 @@ namespace Protocol {
     /// <summary>
     /// 성공
     /// </summary>
-    [pbr::OriginalName("NONE")] None = 0,
+    [pbr::OriginalName("ERROR_NONE")] ErrorNone = 0,
     /// <summary>
     /// 잘못된 인증 정보
     /// </summary>
-    [pbr::OriginalName("INVALID_CREDENTIALS")] InvalidCredentials = 1,
+    [pbr::OriginalName("ERROR_INVALID_CREDENTIALS")] ErrorInvalidCredentials = 1,
     /// <summary>
     /// 서버 가득 참
     /// </summary>
-    [pbr::OriginalName("SERVER_FULL")] ServerFull = 2,
+    [pbr::OriginalName("ERROR_SERVER_FULL")] ErrorServerFull = 2,
     /// <summary>
     /// 알 수 없는 에러
     /// </summary>
-    [pbr::OriginalName("UNKNOWN_ERROR")] UnknownError = 99,
+    [pbr::OriginalName("ERROR_UNKNOWN_ERROR")] ErrorUnknownError = 99,
+  }
+
+  public enum ActorRole {
+    /// <summary>
+    /// 플레이어
+    /// </summary>
+    [pbr::OriginalName("PLAYER")] Player = 0,
+    /// <summary>
+    /// 인공지능
+    /// </summary>
+    [pbr::OriginalName("AI")] Ai = 1,
+    /// <summary>
+    /// 환경 오브젝트
+    /// </summary>
+    [pbr::OriginalName("ENVIRONMENT")] Environment = 2,
+  }
+
+  public enum BossType {
+    [pbr::OriginalName("BOSS_NONE")] BossNone = 0,
+    /// <summary>
+    ///땅콩이
+    /// </summary>
+    [pbr::OriginalName("BOSS_PEANUT")] BossPeanut = 1,
+    /// <summary>
+    ///토하는 여자
+    /// </summary>
+    [pbr::OriginalName("BOSS_VOMIT")] BossVomit = 2,
+    /// <summary>
+    ///프로틴
+    /// </summary>
+    [pbr::OriginalName("BOSS_PROTEIN")] BossProtein = 3,
   }
 
   #endregion
